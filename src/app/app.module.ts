@@ -11,7 +11,8 @@ import { TimesheetAddEditComponent } from './timesheet-add-edit/timesheet-add-ed
 import { TimesheetDayComponent } from './Timesheet-Add-Edit/timesheet-day/timesheet-day.component';
 import { ProjectHoursListComponent } from './Timesheet-Add-Edit/timesheet-day/project-hours-list/project-hours-list.component';
 import { TimesheetHistoryComponent } from './timesheet-history/timesheet-history.component';
-import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-history-project/timesheet-history-project.component'
+import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-history-project/timesheet-history-project.component';
+import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-
     TimesheetDayComponent,
     ProjectHoursListComponent,
     TimesheetHistoryComponent,
-    TimesheetHistoryProjectComponent
+    TimesheetHistoryProjectComponent,
+    TimesheetMainComponent
   ],
   imports: [
     BrowserModule,
