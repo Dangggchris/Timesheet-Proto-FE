@@ -42,10 +42,10 @@ import { MaterialModule } from './material/material.module'
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    MaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule,
-    MaterialModule
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
