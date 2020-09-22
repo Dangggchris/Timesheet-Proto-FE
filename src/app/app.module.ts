@@ -2,6 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { AngularFireModule } from '@angular/fire'
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+// Environment
+import { environment } from 'src/environments/environment';
+
+
 // Angular Components
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +21,9 @@ import { ProjectHoursListComponent } from './Timesheet-Add-Edit/timesheet-day/pr
 import { TimesheetHistoryComponent } from './timesheet-history/timesheet-history.component';
 import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-history-project/timesheet-history-project.component';
 import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component'
+
+// Angular Material Module
+import { MaterialModule } from './material/material.module'
 
 @NgModule({
   declarations: [
@@ -30,7 +41,11 @@ import { TimesheetMainComponent } from './timesheet-main/timesheet-main.componen
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
