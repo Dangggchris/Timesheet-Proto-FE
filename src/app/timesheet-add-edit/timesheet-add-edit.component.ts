@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/moment';
+import * as moment from 'moment';
+
+export function momentAdapterFactory() {
+  return adapterFactory(moment);
+};
 
 @Component({
   selector: 'app-timesheet-add-edit',

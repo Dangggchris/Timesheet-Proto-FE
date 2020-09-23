@@ -12,7 +12,10 @@ import { TimesheetDayComponent } from './Timesheet-Add-Edit/timesheet-day/timesh
 import { ProjectHoursListComponent } from './Timesheet-Add-Edit/timesheet-day/project-hours-list/project-hours-list.component';
 import { TimesheetHistoryComponent } from './timesheet-history/timesheet-history.component';
 import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-history-project/timesheet-history-project.component';
-import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component'
+import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/moment';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { TimesheetMainComponent } from './timesheet-main/timesheet-main.componen
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]
