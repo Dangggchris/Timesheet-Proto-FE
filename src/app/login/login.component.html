@@ -1,18 +1,19 @@
 <mat-card>
+
     <h2>Velvet Hammer Branding</h2>
-    <h3>GOOGLE FIREBASE SIGN IN</h3>
+    <h3>Time Sheet Prototype</h3>
 
 
     <div *ngIf="auth.user$ | async as user; else login">
-        {{user | json}}
+        <pre>{{ user | json }} </pre>
         <hr>
-        <button class="button" (click)="auth.signOut()" mat-raised-button color="primary">Sign Out</button>
+        <button class="button" (click)="auth.signOut()" mat-button color="primary">Sign Out</button>
     </div>
-    <ng-template #login class="text-center">
+
+    <ng-template #login>
         <button class="button" (click)="auth.googleSignIn()" mat-raised-button color="primary">Log In With
-            Google Fire Base</button>
-        <br> <br>
-        <div class="g-signin2 login-button" data-onsuccess="onSignIn"></div>
+            Google</button>
+
     </ng-template>
 
 </mat-card>
