@@ -11,8 +11,10 @@
     </div>
 
     <ng-template #login>
-        <button class="button" (click)="auth.googleSignIn()" mat-raised-button color="primary">Log In With
+        <button class="button g-signin2" (click)="auth.googleSignIn()" mat-raised-button color="primary"
+            data-onsuccess="onSignIn">Log In With
             Google</button>
+        <br>
 
     </ng-template>
 
