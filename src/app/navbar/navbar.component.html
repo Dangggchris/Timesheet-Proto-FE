@@ -1,1 +1,13 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+    <a class="nav-link logo" routerLink="main">LOGO goes here</a>
+    <div class="container nav-bar" routerLinkActive="active">
+
+        <!-- <a class="nav-link" routerLink="login">Login</a> -->
+
+        <a class="nav-link links" routerLink="addEdit">Add/Edit Hours</a>
+        <a class="nav-link links" routerLink="history">History</a>
+        <button class="nav-link sign-out" mat-button color="primary" routerLink="login" (click)="auth.signOut()">
+            Sign Out</button>
+
+    </div>
+</nav>

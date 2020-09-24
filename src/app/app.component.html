@@ -1,14 +1,18 @@
+<mat-toolbar class="app-toolbar">
+  <app-navbar></app-navbar>
+</mat-toolbar>
+
 <mat-grid-list cols="12">
 
-  <mat-grid-tile colspan="12">
-    <app-navbar></app-navbar>
+
+  <mat-grid-tile colspan="12" rowspan="3">
+    <router-outlet></router-outlet>
   </mat-grid-tile>
 
-
-  <mat-grid-tile colspan="12" rowspan="4">
+  <!-- <mat-grid-tile colspan="12" rowspan="4">
 
     <app-login></app-login>
-  </mat-grid-tile>
+  </mat-grid-tile> -->
   <!-- 
   <mat-grid-tile colspan="12" rowspan="5">
     <p>To be routed later</p>
