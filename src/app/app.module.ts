@@ -23,7 +23,7 @@ import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-
 import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component'
 
 // Angular Material Module
-import { MaterialModule } from './material/material.module'
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { MaterialModule } from './material/material.module'
     ProjectHoursListComponent,
     TimesheetHistoryComponent,
     TimesheetHistoryProjectComponent,
-    TimesheetMainComponent
+    TimesheetMainComponent,
   ],
   imports: [
     BrowserModule,
