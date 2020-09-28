@@ -46,15 +46,19 @@ export class AuthService {
   async googleSignIn() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.signInWithPopup(provider);
-    console.log(credential.user)
+    console.log(credential.user.getIdToken())
+
+
     return this.updateUserData(credential.user)
   }
 
   // Will require Angular Routing....
   async signOut() {
-    console.log("hit")
     await this.afAuth.signOut()
-    this.router.navigate(['/login'])
+    this.router.navigate(['/'])
   }
+
+  // Retrieve Token
+
 
 }
