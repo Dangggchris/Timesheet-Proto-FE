@@ -7,7 +7,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // Environment
-import { environment } from 'src/environments/environment';
+//import { environment } from 'src/environments/environment.localhost';
 
 
 // Angular Components
@@ -26,7 +26,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/moment';
 
 
 // Angular Material Module
-import { MaterialModule } from './material/material.module'
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { MaterialModule } from './material/material.module'
     ProjectHoursListComponent,
     TimesheetHistoryComponent,
     TimesheetHistoryProjectComponent,
-    TimesheetMainComponent
+    TimesheetMainComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +47,7 @@ import { MaterialModule } from './material/material.module'
     FormsModule,
     MaterialModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    AngularFireModule.initializeApp(environment.firebase),
+//    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule
   ],

@@ -1,18 +1,27 @@
-<mat-grid-list cols="12">
-  <mat-grid-tile colspan="12">
-    <app-navbar></app-navbar>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1" rowspan="3"></mat-grid-tile>
+<mat-toolbar class="app-toolbar">
+  <app-navbar></app-navbar>
+</mat-toolbar>
 
-  <mat-grid-tile colspan="10" rowspan="3">
+<mat-grid-list cols="12" class="main-card">
+
+
+  <mat-grid-tile colspan="12" rowspan="4">
+    <mat-card>
+      <router-outlet></router-outlet>
+    </mat-card>
+  </mat-grid-tile>
+
+  <!-- <mat-grid-tile colspan="12" rowspan="4">
+
     <app-login></app-login>
-  </mat-grid-tile>
-
-  <mat-grid-tile colspan="1" rowspan="3"></mat-grid-tile>
-
-  <!-- <mat-grid-tile colspan="12" rowspan="2">
+  </mat-grid-tile> -->
+  <!-- 
+  <mat-grid-tile colspan="12" rowspan="5">
+    <p>To be routed later</p>
     <app-timesheet-main></app-timesheet-main>
   </mat-grid-tile> -->
 
+
   <mat-grid-tile colspan="12">FOOTER</mat-grid-tile>
+
 </mat-grid-list>
