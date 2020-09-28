@@ -6,7 +6,8 @@
 
         <a class="nav-link links" routerLink="addEdit">Add/Edit Hours</a>
         <a class="nav-link links" routerLink="history">History</a>
-        <!-- <a class="nav-link" routerLink="login">Sign Out</a> -->
+        <button class="nav-link sign-out" mat-button color="primary" routerLink="login" (click)="auth.signOut()">
+            Sign Out</button>
 
     </div>
 </nav>

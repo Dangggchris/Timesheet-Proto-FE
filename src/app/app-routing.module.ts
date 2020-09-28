@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './service/auth.guard'
+
+
+// { path: 'path', component: COMPONENTHERE, canActivate: [AuthGuard] }
+
 import { LoginComponent } from './login/login.component';
 import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component';
 import { TimesheetAddEditComponent } from './timesheet-add-edit/timesheet-add-edit.component';
@@ -16,20 +21,23 @@ const routes: Routes = [
   },
   {
     path: 'main',
-    component: TimesheetMainComponent
+    component: TimesheetMainComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'addEdit',
-    component: TimesheetAddEditComponent
+    component: TimesheetAddEditComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'history',
-    component: TimesheetHistoryComponent
+    component: TimesheetHistoryComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
     component: LoginComponent
-  },
+  }
 ];
 
 @NgModule({
