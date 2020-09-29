@@ -22,7 +22,6 @@ import { ProjectHoursListComponent } from './Timesheet-Add-Edit/timesheet-day/pr
 import { TimesheetHistoryComponent } from './timesheet-history/timesheet-history.component';
 import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-history-project/timesheet-history-project.component';
 import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component'
-import { LoginFormComponent } from './login-form/login-form.component';
 
 // Angular Material Module
 import { MaterialModule } from './material/material.module';
@@ -37,8 +36,7 @@ import { MaterialModule } from './material/material.module';
     ProjectHoursListComponent,
     TimesheetHistoryComponent,
     TimesheetHistoryProjectComponent,
-    TimesheetMainComponent,
-    LoginFormComponent,
+    TimesheetMainComponent
   ],
   imports: [
     BrowserModule,

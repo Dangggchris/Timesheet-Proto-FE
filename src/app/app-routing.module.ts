@@ -9,16 +9,16 @@ import { LoginComponent } from './login/login.component';
 import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component';
 import { TimesheetAddEditComponent } from './timesheet-add-edit/timesheet-add-edit.component';
 import { TimesheetHistoryComponent } from './timesheet-history/timesheet-history.component';
-import { LoginFormComponent } from './login-form/login-form.component'
+
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginFormComponent
+    component: LoginComponent
   },
   {
     path: 'login',
-    component: LoginFormComponent
+    component: LoginComponent
   },
   {
     path: 'main',

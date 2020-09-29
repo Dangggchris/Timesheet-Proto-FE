@@ -46,11 +46,15 @@ export class AuthService {
   async googleSignIn() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.signInWithPopup(provider);
-    console.log(credential.user.getIdToken())
 
+    // retrieve Firebase JWT, store jwt in localstorage?
+    console.log(credential.user.getIdToken())
 
     return this.updateUserData(credential.user)
   }
+
+
+  // onAuthStateChanged
 
   // Will require Angular Routing....
   async signOut() {
