@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http'
 // Environment
 import { environment } from 'src/environments/environment.localhost';
 
+// Angular Material Module
+import { MaterialModule } from './material/material.module';
 
 // Angular Components
 import { AppComponent } from './app.component';
@@ -23,8 +25,6 @@ import { TimesheetHistoryComponent } from './timesheet-history/timesheet-history
 import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-history-project/timesheet-history-project.component';
 import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component'
 
-// Angular Material Module
-import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [

@@ -10,8 +10,10 @@ import { Observable, of } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 
 @Injectable({ providedIn: 'root' })
+
 export class AuthService {
   user$: Observable<User>;
+  public userToken: string;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -49,12 +51,11 @@ export class AuthService {
 
     // retrieve Firebase JWT, store jwt in localstorage?
     console.log(credential.user.getIdToken())
+    this.getToken()
+
 
     return this.updateUserData(credential.user)
   }
-
-
-  // onAuthStateChanged
 
   // Will require Angular Routing....
   async signOut() {
@@ -62,7 +63,19 @@ export class AuthService {
     this.router.navigate(['/'])
   }
 
-  // Retrieve Token
+  // Get Token Method() - tie in with API service
+  getToken(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.afAuth.onAuthStateChanged(user => {
+        if (user) {
+          user.getIdToken().then(idToken => {
+            this.userToken = idToken;
+            resolve(idToken)
+          })
+        }
+      })
+    })
+  }
 
 
 }
