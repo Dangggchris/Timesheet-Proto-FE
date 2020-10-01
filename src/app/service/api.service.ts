@@ -11,24 +11,19 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
-
   ) { }
 
-  credentialsToLaravel(user, token) {
-    // let firebasetoken = this.auth.getToken()
-    // this.auth.user$
-    // do a post request to localhost:8000/login/{user data parameter?
-    console.log(user.uid)
-    console.log(token)
+  credentialsToLaravel(token) {
+
     this.http.post(environment.apiURL + '/api/login', {
-      userInfo: user,
-      authToken: token
-    }, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'JWT' + token
+      Firebasetoken: token
+    }
+      , {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'JWT' + token
+        })
       })
-    })
       .subscribe(responseData => {
         console.log(responseData)
       },
