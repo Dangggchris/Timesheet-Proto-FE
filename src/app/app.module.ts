@@ -7,7 +7,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // Environment
-//import { environment } from 'src/environments/environment.localhost';
+import { environment } from 'src/environments/environment.localhost';
 
 
 // Angular Components
@@ -47,7 +47,7 @@ import { MaterialModule } from './material/material.module';
     FormsModule,
     MaterialModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-//    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
