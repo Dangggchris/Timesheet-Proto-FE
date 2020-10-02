@@ -3,12 +3,11 @@
 
 
 <div *ngIf="auth.user$ | async as user; else login">
-    <!-- <pre>{{ user | json }} </pre> -->
-    <p>Welcome {{user.displayName}}</p>
-
+    <pre>{{ user | json }} </pre>
+    <!-- <p>Welcome {{user.displayName}}</p>
     <hr>
-
-    <img src="{{user.photoURL}}" alt="{{user.displayName}}" width="300">
+    <img src="{{user.photoURL}}" alt="{{user.displayName}}" width="300"> -->
+    <p>{{userToken}} </p>
 
 </div>
 

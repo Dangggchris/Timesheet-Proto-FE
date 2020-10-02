@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// import { HttpClient } from '@angular/common/http'
+import { AuthService } from "../service/auth.service";
 
 @Component({
   selector: 'app-timesheet-main',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimesheetMainComponent implements OnInit {
 
-  constructor() { }
+  readonly Root_Url = ''
+
+  constructor(
+    // private http: HttpClient,
+    public auth: AuthService) { }
 
   ngOnInit(): void {
+    console.log(this.auth.user$)
+  }
+
+  getHistory() {
+
   }
 
 }
