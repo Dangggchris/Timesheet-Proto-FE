@@ -7,7 +7,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // Environment
-import { environment } from 'src/environments/environment.localhost';
+import { environment } from 'src/environments/environment';
 
 
 // Angular Components

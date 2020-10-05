@@ -5,14 +5,16 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: '<your-key>',
-    authDomain: '<your-project-authdomain>',
-    databaseURL: '<your-database-URL>',
-    projectId: '<your-project-id>',
-    storageBucket: '<your-storage-bucket>',
-    messagingSenderId: '<your-messaging-sender-id>'
+    apiKey: "AIzaSyDqot1f953OCGvLF9DBVESz-hG3Hmm9Xi4",
+    authDomain: "vhb-timesheet-proto.firebaseapp.com",
+    databaseURL: "https://vhb-timesheet-proto.firebaseio.com",
+    projectId: "vhb-timesheet-proto",
+    storageBucket: "vhb-timesheet-proto.appspot.com",
+    messagingSenderId: "1852765916",
+    appId: "1:1852765916:web:3749b1da913204f270e619"
   }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
