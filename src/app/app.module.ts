@@ -25,8 +25,11 @@ import { ProjectHoursListComponent } from './Timesheet-Add-Edit/timesheet-day/pr
 import { TimesheetHistoryComponent } from './timesheet-history/timesheet-history.component';
 import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-history-project/timesheet-history-project.component';
 import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component';
+
+// Angular Calendar
 import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/moment';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 
 
@@ -48,7 +51,11 @@ import { adapterFactory } from 'angular-calendar/date-adapters/moment';
     BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
