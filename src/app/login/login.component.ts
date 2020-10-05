@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-// import { ApiService } from '../service/api.service';
+
+import { ApiService } from '../service/api.service';
 import { AuthService } from '../service/auth.service';
-// import { HttpClient } from '@angular/common/http'
-// import { environment } from '../../environments/environment.localhost'
+
 
 @Component({
   selector: 'app-login',
@@ -13,22 +13,21 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    // public api: ApiService,
-    // private http: HttpClient,
+    public api: ApiService,
   ) { }
 
   ngOnInit(): void {
   }
 
-  // logInLaravel() {
+  signIn() {
 
-  //   this.http.post(environment.apiURL, this.api.httpOptions)
-  //     .subscribe(responseData => {
-  //       console.log(responseData)
-  //     },
-  //       error => console.log(error));
+    this.auth.googleSignIn()
+    const firebasetoken = ""
+    console.log(firebasetoken)
 
-  // }
-
+    setTimeout(() => this.api.credentialsToLaravel(firebasetoken), 5000)
+  }
 
 }
+
+
