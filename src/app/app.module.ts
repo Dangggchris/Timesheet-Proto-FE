@@ -6,7 +6,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
-
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Environment
 import { environment } from 'src/environments/environment.localhost';
@@ -51,6 +51,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
+    NgbModalModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,
@@ -59,7 +60,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
