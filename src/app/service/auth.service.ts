@@ -8,7 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 
 import { Observable, of } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
-import { ApiService } from './api.service';
+// import { ApiService } from './api.service';
 
 @Injectable({ providedIn: 'root' })
 
@@ -20,7 +20,7 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router,
-    private api: ApiService
+    // private api: ApiService
   ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
@@ -50,7 +50,7 @@ export class AuthService {
   async googleSignIn() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.signInWithPopup(provider);
-    this.getToken()
+
     return this.updateUserData(credential.user)
   }
 
@@ -67,7 +67,6 @@ export class AuthService {
         if (user) {
           user.getIdToken().then(idToken => {
             this.userToken = idToken;
-            console.log(this.userToken)
             resolve(idToken)
           })
         }

@@ -21,11 +21,13 @@ export class LoginComponent implements OnInit {
 
   signIn() {
 
+    // 1. sign in using google
     this.auth.googleSignIn()
-    const firebasetoken = ""
-    console.log(firebasetoken)
+    // 2. set the user token
+    const firebasetoken = this.auth.userToken
+    // 3. send user toke to laravel
+    this.api.credentialsToLaravel(firebasetoken)
 
-    setTimeout(() => this.api.credentialsToLaravel(firebasetoken), 5000)
   }
 
 }

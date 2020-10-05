@@ -21,7 +21,7 @@ export class ApiService {
       , {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'JWT' + token
+          'Authorization': token
         })
       })
       .subscribe(responseData => {
