@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { AngularFireModule } from '@angular/fire'
+import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
@@ -24,7 +24,10 @@ import { TimesheetDayComponent } from './Timesheet-Add-Edit/timesheet-day/timesh
 import { ProjectHoursListComponent } from './Timesheet-Add-Edit/timesheet-day/project-hours-list/project-hours-list.component';
 import { TimesheetHistoryComponent } from './timesheet-history/timesheet-history.component';
 import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-history-project/timesheet-history-project.component';
-import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component'
+import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/moment';
+
 
 
 @NgModule({
@@ -45,6 +48,7 @@ import { TimesheetMainComponent } from './timesheet-main/timesheet-main.componen
     BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
