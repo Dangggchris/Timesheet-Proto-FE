@@ -67,11 +67,10 @@ export class TimesheetAddEditComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
+  events = [
     {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
+
+      title: 'Project 1',
       color: colors.red,
       actions: this.actions,
       allDay: true,
@@ -82,22 +81,20 @@ export class TimesheetAddEditComponent implements OnInit {
       draggable: true,
     },
     {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
+
+      title: 'Project 2',
       color: colors.yellow,
       actions: this.actions,
     },
     {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
+
+      title: 'Project 3',
       color: colors.blue,
       allDay: true,
     },
     {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
+
+      title: 'Add A project',
       color: colors.yellow,
       actions: this.actions,
       resizable: {
@@ -114,6 +111,7 @@ export class TimesheetAddEditComponent implements OnInit {
   constructor(private modal: NgbModal) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    // 
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -152,7 +150,7 @@ export class TimesheetAddEditComponent implements OnInit {
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  ddEvent(): void {
+  addEvent(): void {
     this.events = [
       ...this.events,
       {

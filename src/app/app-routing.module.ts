@@ -22,9 +22,13 @@ const routes: Routes = [
   },
   {
     path: 'main',
-    component: TimesheetMainComponent,
-    canActivate: [AuthGuard]
+    component: LoginComponent
   },
+  // {
+  //   path: 'main',
+  //   component: TimesheetMainComponent,
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: 'addEdit',
     component: TimesheetAddEditComponent,

@@ -17,7 +17,7 @@
   <div class="col-md-4">
     <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
   </div>
-  <div class="col-md-4">
+  <!-- <div class="col-md-4">
     <div class="btn-group">
       <div class="btn btn-primary" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
         Month
@@ -29,7 +29,7 @@
         Day
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 
 
@@ -52,24 +52,30 @@
 <br /><br /><br />
 
 <h3>
-  Edit events
-  <button class="btn btn-primary float-right">
-    <!-- <button class="btn btn-primary float-right" (click)="addEvent()"> -->
-    Add new
+  Add Project Hours
+  <button class="btn btn-primary float-right ml-4">
+    <!-- <button class="btn btn-primary float-right" (click)="submitHours()"> CREATE NEW METHODS TO INTERACT WITH DATABASE-->
+    Submit
   </button>
+  <button class="btn btn-primary float-right ">
+    <!-- <button class="btn btn-primary float-right" (click)="saveHours()"> CREATE NEW METHODS TO INTERACT WITH DATABASE-->
+    Save
+  </button>
+
   <div class="clearfix"></div>
 </h3>
+
 
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Primary color</th>
-        <th>Secondary color</th>
+        <th>Project</th>
+        <th>Hours</th>
+        <!-- <th>Secondary color</th>
         <th>Starts at</th>
         <th>Ends at</th>
-        <th>Remove</th>
+        <th>Remove</th> -->
       </tr>
     </thead>
 
@@ -77,8 +83,9 @@
       <tr *ngFor="let event of events">
         <td>
           <input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()" />
+          <!-- DROP DOWN LIST OF PROJECTS FORM THE DATABASE -->
         </td>
-        <td>
+        <!-- <td>
           <input type="color" [(ngModel)]="event.color.primary" (change)="refresh.next()" />
         </td>
         <td>
@@ -88,17 +95,20 @@
           <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start"
             (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
             dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i" placeholder="Not set" />
-        </td>
-        <td>
+        </td> -->
+        <!-- <td>
           <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end" (ngModelChange)="refresh.next()"
             [altInput]="true" [convertModelValue]="true" [enableTime]="true" dateFormat="Y-m-dTH:i"
             altFormat="F j, Y H:i" placeholder="Not set" />
-        </td>
+        </td> -->
         <td>
+          <input class="form-control" type="number" />
+        </td>
+        <!-- <td>
           <button class="btn btn-danger" (click)="deleteEvent(event)">
             Delete
           </button>
-        </td>
+        </td> -->
       </tr>
     </tbody>
   </table>
