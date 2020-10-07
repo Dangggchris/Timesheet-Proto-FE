@@ -28,7 +28,16 @@ export class ApiService {
         console.log(responseData)
       },
         error => console.log(error));
-
   }
+
+
+
+  // addProjectHours(time) {
+  //   this.http.put(environment.apiURL + '/api/post', {
+  //     time: time
+  //   }).subscribe(responseData => {
+  //     console.log(responseData)
+  //   }, error => console.log(error))
+  // }
 
 }

@@ -67,6 +67,7 @@ export class TimesheetAddEditComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
+  // replace Events with some projects object
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
@@ -111,9 +112,12 @@ export class TimesheetAddEditComponent implements OnInit {
   activeDayIsOpen: boolean = true;
 
   // will need to import NgbModal
-  constructor(private modal: NgbModal) { }
+  constructor(private modalService: NgbModal) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    // trigger the modal HERE to timesheet-day component
+
+    this.openModal()
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -149,7 +153,7 @@ export class TimesheetAddEditComponent implements OnInit {
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    this.modalService.open(this.modalContent, { size: 'lg' });
   }
 
   addEvent(): void {
@@ -179,6 +183,11 @@ export class TimesheetAddEditComponent implements OnInit {
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+
+  openModal() {
+    const modalRef = this.modalService.open(this.modalContent);
+    modalRef.componentInstance.name = 'World';
   }
 
   ngOnInit(): void {
