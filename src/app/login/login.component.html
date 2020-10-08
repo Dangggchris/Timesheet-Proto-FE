@@ -1,24 +1,27 @@
-<h2>Velvet Hammer Branding</h2>
-<h3>Time Sheet Prototype</h3>
+<div>
+    <h2>Velvet Hammer Branding</h2>
+    <h3>Time Sheet Prototype</h3>
 
 
-<div *ngIf="auth.user$ | async as user; else login">
-    <!-- <pre>{{ user | json }} </pre> -->
-    <p>Welcome {{user.displayName}}</p>
-    <hr>
-    <img src="{{user.photoURL}}" alt="{{user.displayName}}" width="300">
+    <div *ngIf="auth.user$ | async as user; else login">
+        <pre>{{ user | json }} </pre>
+        <p>Welcome {{user.displayName}}</p>
+        <hr>
+        <img src="{{user.photoURL}}" alt="{{user.displayName}}" width="250">
 
-    <br>
-    <br>
-    <!-- add button links to sent to add/edit or history -->
-    <a class="nav-item nav-link-edit" routerLink="/addEdit" routerLinkActive="active">Add Edit</a>
-    <a class="nav-item nav-link-edit float-right " routerLink="/history" routerLinkActive="active">History</a>
+        <br>
+        <br>
+        <!-- add button links to sent to add/edit or history -->
+        <a class="nav-item nav-link-edit" routerLink="/addEdit" routerLinkActive="active">Add Edit</a>
+        <a class="nav-item nav-link-edit float-right " routerLink="/history" routerLinkActive="active">History</a>
+    </div>
+
+    <ng-template #login>
+        <button class="button" (click)="signIn()" mat-raised-button color="primary" data-onsuccess="onSignIn">Log
+            In With
+            Google</button>
+        <br>
+
+    </ng-template>
+
 </div>
-
-<ng-template #login>
-    <button class="button" (click)="signIn()" mat-raised-button color="primary" data-onsuccess="onSignIn">Log
-        In With
-        Google</button>
-    <br>
-
-</ng-template>

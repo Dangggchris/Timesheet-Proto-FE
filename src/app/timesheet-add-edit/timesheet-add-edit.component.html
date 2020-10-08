@@ -15,16 +15,16 @@
     </div>
   </div>
   <div class="col-md-4">
-    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+    <h1>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h1>
   </div>
 </div>
 
 
 <br />
-<div [ngSwitch]="view">
+<div [ngSwitch]="view" class="">
   <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
-    [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
-    (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+    [refresh]="refresh" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)">
   </mwl-calendar-month-view>
 </div>
 
@@ -50,22 +50,23 @@
           <tr>
             <th>Project</th>
             <th>Hours</th>
-
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let event of events">
+          <tr *ngFor="let project of projectsByDate">
             <td>
-              <input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()" />
+              <input type="text" class="form-control" [(ngModel)]="projectsByDate.title" (keyup)="refresh.next()" />
             </td>
-
             <td>
-              <input class="form-control" type="number" />
+              <input class="form-control" type="number" [(ngModel)]="projectsByDate.hours" placeholder="0" />
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+
+    <h4 class="modal-title">Notes</h4>
+    <textarea name="" id="notes" cols="63" rows="7"></textarea>
 
     <h4 class="">Total Hours for {{selectedDate}}</h4>
 
@@ -75,11 +76,11 @@
 
   <div class="modal-footer">
 
-    <button class="btn btn-primary float-right ml-4">
+    <button class="btn btn-primary float-right ml-3 " (click)="saveDayHours()">
+      Save </button>
+    <button class="btn btn-primary float-right" (click)="submitDayHours()">
       Submit </button>
 
-    <button class="btn btn-primary float-right ">
-      Save </button>
     <button type="button" class="btn btn-outline-secondary" (click)="close()">
       Close
     </button>

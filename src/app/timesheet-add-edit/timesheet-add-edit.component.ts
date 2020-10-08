@@ -11,23 +11,6 @@ export function momentAdapterFactory() {
   return adapterFactory(moment);
 };
 
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3',
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF',
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA',
-  },
-};
-
-// need to incorporate Angular-Calendar library component files
-
 @Component({
   selector: 'app-timesheet-add-edit',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,157 +28,167 @@ export class TimesheetAddEditComponent implements OnInit {
 
   selectedDate: string;
 
+  // projectsByDate: Array<any>;
+
   modalData: {
     action: string;
     event: CalendarEvent;
   };
 
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Edit',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      },
-    },
-    {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
-      a11yLabel: 'Delete',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      },
-    },
-  ];
+  actions = [
+    // add project lines
+  ]
 
   refresh: Subject<any> = new Subject();
 
   // replace Events with some projects object
-  events: CalendarEvent[] = [
+
+  projectsByDate = []
+
+  projects = [
+
     {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
+      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
       title: 'Project 1',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
+      date: startOfDay(new Date()),
+      hours: 15
     },
     {
-      start: startOfDay(new Date()),
+      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
       title: 'Project 2',
-      color: colors.yellow,
-      actions: this.actions,
+      date: startOfDay(new Date()),
+      hours: 25
     },
     {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
+      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
       title: 'Project 3',
-      color: colors.blue,
-      allDay: true,
+      date: subDays(endOfMonth(new Date()), 3),
+      hours: 15
     },
     {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'Add A project',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
+      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
+      title: 'Project 4',
+      date: subDays(endOfMonth(new Date()), 2),
+      hours: 25
     },
+    {
+      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
+      title: 'Project 5',
+      date: subDays(endOfMonth(new Date()), 4),
+      hours: 15
+    },
+    {
+      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
+      title: 'Project 5',
+      date: subDays(endOfMonth(new Date()), 5),
+      hours: 25
+    },
+
   ];
 
-  activeDayIsOpen: boolean = true;
+  activeDayIsOpen: boolean = false;
 
   // will need to import NgbModal
-  constructor(private modalService: NgbModal) { }
+  constructor(
+    private modalService: NgbModal
+  ) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     // trigger the modal HERE to timesheet-day component
 
     this.selectedDate = moment(date).format('dddd, MMM DD, YYYY')
 
-    this.openModal()
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
-      this.viewDate = date;
-    }
+    this.openModal(date)
 
   }
 
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd,
-  }: CalendarEventTimesChangedEvent): void {
-    this.events = this.events.map((iEvent) => {
-      if (iEvent === event) {
-        return {
-          ...event,
-          start: newStart,
-          end: newEnd,
-        };
-      }
-      return iEvent;
-    });
-    this.handleEvent('Dropped or resized', event);
-  }
+  // eventTimesChanged({
+  //   event,
+  //   newStart,
+  //   newEnd,
+  // }: CalendarEventTimesChangedEvent): void {
+  //   this.events = this.events.map((iEvent) => {
+  //     if (iEvent === event) {
+  //       return {
+  //         ...event,
+  //         start: newStart,
+  //         end: newEnd,
+  //       };
+  //     }
+  //     return iEvent;
+  //   });
+  //   this.handleEvent('Dropped or resized', event);
+  // }
 
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
-    this.modalService.open(this.modalContent, { size: 'lg' });
+    this.modalService.open(this.modalContent, { size: 'sm' });
   }
 
-  addEvent(): void {
-    this.events = [
-      ...this.events,
+  // addEvent(): void {
+  //   this.events = [
+  //     ...this.events,
+  //     {
+  //       title: 'New event',
+  //       start: startOfDay(new Date()),
+  //       end: endOfDay(new Date()),
+  //       color: colors.red,
+  //       draggable: true,
+  //       resizable: {
+  //         beforeStart: true,
+  //         afterEnd: true,
+  //       },
+  //     },
+  //   ];
+  // }
+
+  addProjectHours(): void {
+    this.projects = [
+      ...this.projects,
+
       {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
+        uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
+        title: 'Project 1',
+        date: subDays(endOfMonth(new Date()), 5),
+        hours: 25
       },
-    ];
+
+    ]
   }
 
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
-  }
-
-  setView(view: CalendarView) {
-    this.view = view;
-  }
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
 
-  openModal() {
+  openModal(date) {
+    // get request all projects based on the date input
+
+    this.projectsByDate.splice(0, this.projectsByDate.length)
+
+    this.projects.forEach((project) => {
+      if (date == project.date) {
+        this.projectsByDate.push(project)
+      }
+    })
     this.modalService.open(this.modalContent);
-    // modalRef.componentInstance.name = 'World';
+
   }
 
   ngOnInit(): void {
+    // httpClient get requests auth.user.uid...
+  }
+
+  saveDayHours(projectHours) {
+    // for each row/project, pass the hours through the post.model class
+    // implement the httpclient requests using api.service.ts
+  }
+
+
+  submitDayHours(projectHours) {
+    // for each row/project, pass the hours through the post.model class
+    // implement the httpclient requests using api.service.ts
   }
 
 }
