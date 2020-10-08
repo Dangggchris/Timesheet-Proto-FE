@@ -6,6 +6,7 @@ import { Subject } from 'rxjs'
 import * as moment from 'moment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+
 export function momentAdapterFactory() {
   return adapterFactory(moment);
 };
@@ -41,6 +42,8 @@ export class TimesheetAddEditComponent implements OnInit {
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
+
+  selectedDate: string;
 
   modalData: {
     action: string;
@@ -117,6 +120,8 @@ export class TimesheetAddEditComponent implements OnInit {
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     // trigger the modal HERE to timesheet-day component
 
+    this.selectedDate = moment(date).format('dddd, MMM DD, YYYY')
+
     this.openModal()
     if (isSameMonth(date, this.viewDate)) {
       if (
@@ -186,8 +191,8 @@ export class TimesheetAddEditComponent implements OnInit {
   }
 
   openModal() {
-    const modalRef = this.modalService.open(this.modalContent);
-    modalRef.componentInstance.name = 'World';
+    this.modalService.open(this.modalContent);
+    // modalRef.componentInstance.name = 'World';
   }
 
   ngOnInit(): void {

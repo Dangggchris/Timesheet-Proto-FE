@@ -17,13 +17,13 @@ import { MaterialModule } from './material/material.module';
 // Angular Components
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component';
 import { TimesheetAddEditComponent } from './timesheet-add-edit/timesheet-add-edit.component';
-import { TimesheetDayComponent } from './timesheet-day/timesheet-day.component';
 import { TimesheetHistoryComponent } from './timesheet-history/timesheet-history.component';
 import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-history-project/timesheet-history-project.component';
-import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component';
 
 // Angular Calendar
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -38,7 +38,6 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     LoginComponent,
     NavbarComponent,
     TimesheetAddEditComponent,
-    TimesheetDayComponent,
     TimesheetHistoryComponent,
     TimesheetHistoryProjectComponent,
     TimesheetMainComponent

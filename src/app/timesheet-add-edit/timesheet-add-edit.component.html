@@ -31,16 +31,20 @@
 
 <!-- if day clicked, modal show app-timesheet-day component -->
 <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+<!-- <app-timesheet-day #modalContent [selectedDate]='selectedDate'></app-timesheet-day> -->
+
 
 <ng-template #modalContent let-close="close">
   <div class="modal-header">
-    <h5 class="modal-title">Add Project Hours</h5>
+    <h2 class="modal-title">Add Project Hours for {{selectedDate}}</h2>
     <button type="button" class="close" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <div class="table-responsive">
+
+
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -53,7 +57,6 @@
           <tr *ngFor="let event of events">
             <td>
               <input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()" />
-              <!-- DROP DOWN LIST OF PROJECTS FORM THE DATABASE -->
             </td>
 
             <td>
@@ -64,17 +67,17 @@
       </table>
     </div>
 
-    <h3 class="">Total Hours for DATE</h3>
+    <h4 class="">Total Hours for {{selectedDate}}</h4>
 
     <h4 class="float-right">45 Hours</h4>
 
   </div>
 
   <div class="modal-footer">
-    <!-- (click)="submitHours()" CREATE NEW METHODS TO INTERACT WITH DATABASE-->
+
     <button class="btn btn-primary float-right ml-4">
       Submit </button>
-    <!-- (click)="saveHours()" CREATE NEW METHODS TO INTERACT WITH DATABASE-->
+
     <button class="btn btn-primary float-right ">
       Save </button>
     <button type="button" class="btn btn-outline-secondary" (click)="close()">
