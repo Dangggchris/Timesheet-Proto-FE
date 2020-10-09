@@ -5,6 +5,8 @@ import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMo
 import { Subject } from 'rxjs'
 import * as moment from 'moment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../service/auth.service'
+import { ApiService } from '../service/api.service'
 
 
 export function momentAdapterFactory() {
@@ -28,6 +30,8 @@ export class TimesheetAddEditComponent implements OnInit {
 
   selectedDate: string;
 
+  uid: string;
+
   // projectsByDate: Array<any>;
 
   modalData: {
@@ -42,9 +46,6 @@ export class TimesheetAddEditComponent implements OnInit {
   refresh: Subject<any> = new Subject();
 
   // replace Events with some projects object
-
-  projectsByDate = []
-
   projects = [
 
     {
@@ -90,16 +91,26 @@ export class TimesheetAddEditComponent implements OnInit {
 
   // will need to import NgbModal
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    public authUser: AuthService,
+    private api: ApiService
   ) { }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }) {
     // trigger the modal HERE to timesheet-day component
 
+    // date to be in 2020-09-30 format
     this.selectedDate = moment(date).format('dddd, MMM DD, YYYY')
+    // need a controller to retrieve projects based on this date selected...
+    const projectDate = moment(date).format("YYYY-MM-DD")
+    console.log(projectDate)
 
-    this.openModal(date)
-
+    this.api.getProjectsByDate("1", projectDate)
+      .subscribe((response) => {
+        console.log(response)
+        this.openModal()
+      })
+    // need to async/await testData
   }
 
   // eventTimesChanged({
@@ -162,22 +173,16 @@ export class TimesheetAddEditComponent implements OnInit {
     this.activeDayIsOpen = false;
   }
 
-  openModal(date) {
+  openModal() {
     // get request all projects based on the date input
-
-    this.projectsByDate.splice(0, this.projectsByDate.length)
-
-    this.projects.forEach((project) => {
-      if (date == project.date) {
-        this.projectsByDate.push(project)
-      }
-    })
-    this.modalService.open(this.modalContent);
+    this.modalService.open(this.modalContent)
 
   }
 
   ngOnInit(): void {
     // httpClient get requests auth.user.uid...
+    this.authUser.user$
+
   }
 
   saveDayHours(projectHours) {

@@ -9,7 +9,7 @@ import { TimeSheet } from './post.model'
 })
 export class ApiService {
 
-  post: Observable<TimeSheet>
+  post: Observable<TimeSheet>;
   firebasetoken: string;
 
   constructor(
@@ -34,6 +34,9 @@ export class ApiService {
   }
 
 
+  getProjectsByDate(uid, date): Observable<any> {
+    return this.http.get<any>(environment.apiURL + '/api/dailytimesheet/' + uid + '/' + date)
+  }
 
   // saveProjectHours(time) {
   //   this.http.put(environment.apiURL + '/api/post', {
@@ -50,11 +53,6 @@ export class ApiService {
   //   }, error => console.log(error))
   // }
 
-
-
-  retrieveProjectsbyDate() {
-
-  }
 
 
 }
