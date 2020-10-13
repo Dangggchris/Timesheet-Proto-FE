@@ -1,29 +1,43 @@
-<div class="table-responsive">
+<div class="modal-body">
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Project</th>
-                <th>Hours</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let project of projects">
-                <td>
-                    <input type="text" class="form-control" [(ngModel)]="projects.title" (keyup)="refresh.next()" />
-                </td>
-                <td>
-                    <input class="form-control" type="number" [(ngModel)]="projects.hours" placeholder="0" />
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Hours</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let project of projects">
+                    <td>
+                        <input type="text" class="form-control" [(ngModel)]="project.title" (keyup)="refresh.next()" />
+                    </td>
+                    <td>
+                        <input class="form-control" type="number" [(ngModel)]="project.hours" placeholder="0" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h4 class="modal-title">Notes</h4>
+    <textarea name="" id="notes" cols="63" rows="7"></textarea>
+
+    <h4 class="">Total Hours for </h4>
+
+    <h4 class="float-right">45 Hours</h4>
+
 </div>
 
-<h4 class="modal-title">Notes</h4>
-<textarea name="" id="notes" cols="63" rows="7"></textarea>
+<div class="modal-footer">
 
-<!-- date pass down from timesheet-add-edit component -->
-<h4 class="">Total Hours for " "</h4>
-
-<h4 class="float-right">45 Hours</h4>
+    <button class="btn btn-primary float-right ml-3 ">
+        Save </button>
+    <button class="btn btn-primary float-right">
+        Submit </button>
+    <button type="button" class="btn btn-outline-secondary">
+        Close
+    </button>
+</div>

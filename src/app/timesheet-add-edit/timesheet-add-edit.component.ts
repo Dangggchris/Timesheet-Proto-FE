@@ -31,7 +31,7 @@ export class TimesheetAddEditComponent implements OnInit {
 
   selectedDate: string;
 
-  uid: string;
+  // uid: string;
 
   // projectsByDate: Array<any>;
 
@@ -104,8 +104,8 @@ export class TimesheetAddEditComponent implements OnInit {
     this.selectedDate = moment(date).format('dddd, MMM DD, YYYY')
     // need a controller to retrieve projects based on this date selected...
     const projectDate = moment(date).format("YYYY-MM-DD")
-    console.log(this.uid)
-    this.api.getProjectsByDate(this.uid, projectDate)
+
+    this.api.getProjectsByDate(this.authUser.uid, projectDate)
       .subscribe((response) => {
         console.log(response.data)
 
@@ -182,14 +182,13 @@ export class TimesheetAddEditComponent implements OnInit {
 
   ngOnInit(): void {
     // httpClient get requests auth.user.uid...
-    this.authUser.user$.forEach(item => {
-      if (item.uid !== '') {
-        console.log(item.uid)
-        this.uid = item.uid
-      }
-    })
+    // this.authUser.user$.forEach(item => {
+    //   if (item.uid !== '') {
+    //     console.log(item.uid)
+    //     this.uid = item.uid
+    //   }
+    // })
     // afs/firestore/credentials/currentuser/uid
-
   }
 
   saveDayHours(projectHours) {
