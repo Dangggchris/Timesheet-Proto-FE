@@ -1,0 +1,29 @@
+<div class="table-responsive">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>Hours</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let project of projects">
+                <td>
+                    <input type="text" class="form-control" [(ngModel)]="projects.title" (keyup)="refresh.next()" />
+                </td>
+                <td>
+                    <input class="form-control" type="number" [(ngModel)]="projects.hours" placeholder="0" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h4 class="modal-title">Notes</h4>
+<textarea name="" id="notes" cols="63" rows="7"></textarea>
+
+<!-- date pass down from timesheet-add-edit component -->
+<h4 class="">Total Hours for " "</h4>
+
+<h4 class="float-right">45 Hours</h4>

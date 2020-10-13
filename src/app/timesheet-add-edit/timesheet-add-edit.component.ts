@@ -9,6 +9,7 @@ import { AuthService } from '../service/auth.service'
 import { ApiService } from '../service/api.service'
 
 
+
 export function momentAdapterFactory() {
   return adapterFactory(moment);
 };
@@ -103,11 +104,11 @@ export class TimesheetAddEditComponent implements OnInit {
     this.selectedDate = moment(date).format('dddd, MMM DD, YYYY')
     // need a controller to retrieve projects based on this date selected...
     const projectDate = moment(date).format("YYYY-MM-DD")
-    console.log(projectDate)
-
-    this.api.getProjectsByDate("1", projectDate)
+    console.log(this.uid)
+    this.api.getProjectsByDate(this.uid, projectDate)
       .subscribe((response) => {
-        console.log(response)
+        console.log(response.data)
+
         this.openModal()
       })
     // need to async/await testData
@@ -154,19 +155,19 @@ export class TimesheetAddEditComponent implements OnInit {
   //   ];
   // }
 
-  addProjectHours(): void {
-    this.projects = [
-      ...this.projects,
+  // addProjectHours(): void {
+  //   this.projects = [
+  //     ...this.projects,
 
-      {
-        uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-        title: 'Project 1',
-        date: subDays(endOfMonth(new Date()), 5),
-        hours: 25
-      },
+  //     {
+  //       uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
+  //       title: 'Project 1',
+  //       date: "2020-10-13",
+  //       hours: 25
+  //     },
 
-    ]
-  }
+  //   ]
+  // }
 
 
   closeOpenMonthViewDay() {
@@ -181,7 +182,13 @@ export class TimesheetAddEditComponent implements OnInit {
 
   ngOnInit(): void {
     // httpClient get requests auth.user.uid...
-    this.authUser.user$
+    this.authUser.user$.forEach(item => {
+      if (item.uid !== '') {
+        console.log(item.uid)
+        this.uid = item.uid
+      }
+    })
+    // afs/firestore/credentials/currentuser/uid
 
   }
 

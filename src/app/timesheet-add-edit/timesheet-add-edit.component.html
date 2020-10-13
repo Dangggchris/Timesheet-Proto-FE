@@ -42,7 +42,9 @@
     </button>
   </div>
   <div class="modal-body">
-    <div class="table-responsive">
+
+    <app-form></app-form>
+    <!-- <div class="table-responsive">
 
 
       <table class="table table-bordered">
@@ -53,12 +55,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let project of projectsByDate">
+          <tr *ngFor="let project of projects">
             <td>
-              <input type="text" class="form-control" [(ngModel)]="projectsByDate.title" (keyup)="refresh.next()" />
+              <input type="text" class="form-control" [(ngModel)]="projects.title" (keyup)="refresh.next()" />
             </td>
             <td>
-              <input class="form-control" type="number" [(ngModel)]="projectsByDate.hours" placeholder="0" />
+              <input class="form-control" type="number" [(ngModel)]="projects.hours" placeholder="0" />
             </td>
           </tr>
         </tbody>
@@ -70,7 +72,7 @@
 
     <h4 class="">Total Hours for {{selectedDate}}</h4>
 
-    <h4 class="float-right">45 Hours</h4>
+    <h4 class="float-right">45 Hours</h4> -->
 
   </div>
 
