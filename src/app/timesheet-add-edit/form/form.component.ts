@@ -11,6 +11,7 @@ import * as moment from 'moment';
 export class FormComponent implements OnInit {
 
   @Input() selectedDate;
+  @Input() projectsByDate;
 
   @ViewChild('projectInput', { static: false }) projectInput: ElementRef;
   @ViewChild('hoursInput', { static: false }) hoursInput: ElementRef;
@@ -18,73 +19,71 @@ export class FormComponent implements OnInit {
   @Output() addProjectHours = new EventEmitter<TimeSheet>()
 
   constructor(
-    public authUser: AuthService
+    private authUser: AuthService
   ) { }
 
   ngOnInit(): void {
+
+    // do a get request into the modal based on the uid & date
+
+
   }
 
   // pass date from timesheet-add-edit down to form component
 
-  // do a get request into the modal based on the uid & date
+
 
   // emit form data back to the timesheet-add-edit component
 
   projects = [
 
-    {
-      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-      title: 'DataSlate',
-      date: "2020-10-13",
-      hours: 15
-    },
-    {
-      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-      title: 'Velvet Hammer Branding - The Vault',
-      date: "2020-10-13",
-      hours: 25
-    },
-    {
-      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-      title: 'Time Sheet Prototype',
-      date: "2020-10-15",
-      hours: 15
-    },
-    {
-      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-      title: 'Project Aiko',
-      date: "2020-10-15",
-      hours: 25
-    },
-    {
-      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-      title: 'Project 5',
-      date: "2020-10-15",
-      hours: 15
-    },
-    {
-      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-      title: 'Project 5',
-      date: "2020-10-15",
-      hours: 25
-    },
-
+    // {
+    //   uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
+    //   title: 'DataSlate',
+    //   date: "2020-10-13",
+    //   hours: 15
+    // },
+    // {
+    //   uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
+    //   title: 'Velvet Hammer Branding - The Vault',
+    //   date: "2020-10-13",
+    //   hours: 25
+    // },
+    // {
+    //   uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
+    //   title: 'Time Sheet Prototype',
+    //   date: "2020-10-15",
+    //   hours: 15
+    // },
+    // {
+    //   uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
+    //   title: 'Project Aiko',
+    //   date: "2020-10-15",
+    //   hours: 25
+    // }
   ]
 
 
   saveDayHours() {
     // for each row/project, pass the hours through the post.model class
-    // implement the httpclient requests using api.service.ts
+
     const newProjectName = this.projectInput.nativeElement.value
     const newProjectHours = this.hoursInput.nativeElement.value
 
     const newTimeSheet = new TimeSheet(this.authUser.uid, "2020-10-13", newProjectName, newProjectHours)
+    console.log(newTimeSheet)
 
+    // implement the httpclient requests using api.service.ts - using a put request
   }
 
 
   submitDayHours() {
     // for each row/project, pass the hours through the post.model class
+    const newProjectName = this.projectInput.nativeElement.value
+    const newProjectHours = this.hoursInput.nativeElement.value
+
+    const newTimeSheet = new TimeSheet(this.authUser.uid, "2020-10-13", newProjectName, newProjectHours)
+    console.log(newTimeSheet)
     // implement the httpclient requests using api.service.ts
   }
 

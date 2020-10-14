@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../service/auth.service'
 import { ApiService } from '../service/api.service'
+import { TimeSheet } from '../service/post.model'
 
 
 
@@ -33,7 +34,7 @@ export class TimesheetAddEditComponent implements OnInit {
 
   // uid: string;
 
-  // projectsByDate: Array<any>;
+  projectsByDate: TimeSheet;
 
   modalData: {
     action: string;
@@ -47,6 +48,8 @@ export class TimesheetAddEditComponent implements OnInit {
   refresh: Subject<any> = new Subject();
 
   // replace Events with some projects object
+
+
   projects = [
 
     {
@@ -108,7 +111,8 @@ export class TimesheetAddEditComponent implements OnInit {
     this.api.getProjectsByDate(this.authUser.uid, projectDate)
       .subscribe((response) => {
         console.log(response.data)
-
+        // pass response.data down to form component
+        this.projectsByDate = response.data
         this.openModal()
       })
     // need to async/await testData
