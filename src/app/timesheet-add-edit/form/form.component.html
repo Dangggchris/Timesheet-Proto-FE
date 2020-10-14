@@ -16,7 +16,7 @@
 
             <!-- if there are projects on this date -->
 
-            <tbody *ngIf="projectsByDate; else elseBlock">
+            <tbody *ngIf="projectsByDate.length > 0; else elseBlock">
                 <tr *ngFor="let project of projectsByDate">
                     <td>
                         <input type="text" class="form-control" [(ngModel)]="project.project_id" #projectInput />
@@ -39,7 +39,7 @@
 
 
             <!-- if no projects on this date -->
-            <ng-template #elseBlock>Content to render when condition is false.
+            <ng-template #elseBlock>
                 <tbody>
                     <tr>
                         <td>

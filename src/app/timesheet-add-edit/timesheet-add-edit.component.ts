@@ -107,7 +107,7 @@ export class TimesheetAddEditComponent implements OnInit {
     this.selectedDate = moment(date).format('dddd, MMM DD, YYYY')
     // need a controller to retrieve projects based on this date selected...
     const projectDate = moment(date).format("YYYY-MM-DD")
-
+    console.log(this.authUser.uid)
     this.api.getProjectsByDate(this.authUser.uid, projectDate)
       .subscribe((response) => {
         console.log(response.data)

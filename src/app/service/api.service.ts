@@ -39,7 +39,7 @@ export class ApiService {
   }
 
   saveProjectHours(time) {
-    this.http.post<any>(environment.apiURL + '/api//dailytimesheet', {
+    this.http.post<any>(environment.apiURL + '/api/dailytimesheet', {
       time
     }).subscribe(responseData => {
       console.log(responseData)
