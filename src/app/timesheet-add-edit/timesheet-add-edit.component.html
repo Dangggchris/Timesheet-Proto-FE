@@ -36,14 +36,14 @@
 
 <ng-template #modalContent let-close="close">
   <div class="modal-header">
-    <h2 class="modal-title">Add Project Hours for {{selectedDate}}</h2>
+    <!-- <h2 class="modal-title">Add Project Hours for {{selectedDate}}</h2> -->
     <button type="button" class="close" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <!-- <div class="modal-body"> -->
 
-  <app-form></app-form>
+  <app-form [selectedDate]="selectedDate"></app-form>
   <!-- <div class="table-responsive">
 
 

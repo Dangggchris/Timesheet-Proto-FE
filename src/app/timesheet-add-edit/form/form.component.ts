@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { TimeSheet } from '../../service/post.model'
 import * as moment from 'moment';
@@ -9,6 +9,8 @@ import * as moment from 'moment';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
+
+  @Input() selectedDate;
 
   @ViewChild('projectInput', { static: false }) projectInput: ElementRef;
   @ViewChild('hoursInput', { static: false }) hoursInput: ElementRef;
