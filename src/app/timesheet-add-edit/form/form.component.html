@@ -11,10 +11,12 @@
                 <tr>
                     <th class="w-75">Project</th>
                     <th class="w-50">Hours</th>
-
                 </tr>
             </thead>
-            <tbody>
+
+            <!-- if there are projects on this date -->
+
+            <tbody *ngIf="projectsByDate; else elseBlock">
                 <tr *ngFor="let project of projectsByDate">
                     <td>
                         <input type="text" class="form-control" [(ngModel)]="project.project_id" #projectInput />
@@ -33,6 +35,31 @@
                     </td>
                 </tr>
             </tbody>
+
+
+
+            <!-- if no projects on this date -->
+            <ng-template #elseBlock>Content to render when condition is false.
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" placeholder="Enter Project Name" #projectInput />
+                        </td>
+                        <td>
+                            <input class="form-control" type="number" placeholder="0" #hoursInput>
+                        </td>
+                        <td>
+                            <button mat-button color="primary" (click)="saveDayHours()">
+                                Save </button>
+                        </td>
+                        <td>
+                            <button mat-button color="primary" (click)="submitDayHours()">
+                                Submit </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </ng-template>
+
         </table>
     </div>
 

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input }
 import { AuthService } from 'src/app/service/auth.service';
 import { TimeSheet } from '../../service/post.model'
 import * as moment from 'moment';
+import { ApiService } from '../../service/api.service'
 
 @Component({
   selector: 'app-form',
@@ -19,7 +20,8 @@ export class FormComponent implements OnInit {
   @Output() addProjectHours = new EventEmitter<TimeSheet>()
 
   constructor(
-    private authUser: AuthService
+    private authUser: AuthService,
+    private api: ApiService
   ) { }
 
   ngOnInit(): void {
@@ -71,9 +73,10 @@ export class FormComponent implements OnInit {
     const newProjectHours = this.hoursInput.nativeElement.value
 
     const newTimeSheet = new TimeSheet(this.authUser.uid, "2020-10-13", newProjectName, newProjectHours)
-    console.log(newTimeSheet)
 
     // implement the httpclient requests using api.service.ts - using a put request
+    this.api.saveProjectHours(newTimeSheet)
+
   }
 
 
@@ -86,8 +89,5 @@ export class FormComponent implements OnInit {
     console.log(newTimeSheet)
     // implement the httpclient requests using api.service.ts
   }
-
-
-
 
 }

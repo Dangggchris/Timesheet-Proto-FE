@@ -38,13 +38,14 @@ export class ApiService {
     return this.http.get<any>(environment.apiURL + '/api/dailytimesheet/' + uid + '/' + date)
   }
 
-  // saveProjectHours(time) {
-  //   this.http.put(environment.apiURL + '/api/post', {
-  //      post:post
-  //   }).subscribe(responseData => {
-  //     console.log(responseData)
-  //   }, error => console.log(error))
-  // }
+  saveProjectHours(time) {
+    this.http.post<any>(environment.apiURL + '/api//dailytimesheet', {
+      time
+    }).subscribe(responseData => {
+      console.log(responseData)
+    }, error => console.log(error))
+  }
+
   // submitProjectHours(post) {
   //   this.http.post(environment.apiURL + '/api/post', {
   //    post:post
