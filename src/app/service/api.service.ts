@@ -38,8 +38,10 @@ export class ApiService {
     return this.http.get<any>(environment.apiURL + '/api/dailytimesheet/' + uid + '/' + date)
   }
 
-  saveProjectHours(time) {
-    this.http.post<any>(environment.apiURL + '/api/dailytimesheet', {
+  saveProjectHours(uid, project_id, time) {
+    console.log(time)
+
+    this.http.put<any>(environment.apiURL + `/dailytimesheet/userid=${uid}/projectid=${project_id}`, {
       time
     }).subscribe(responseData => {
       console.log(responseData)

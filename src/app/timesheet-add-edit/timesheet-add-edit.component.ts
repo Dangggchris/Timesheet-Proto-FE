@@ -32,6 +32,8 @@ export class TimesheetAddEditComponent implements OnInit {
 
   selectedDate: string;
 
+  projectDate: string;
+
   // uid: string;
 
   projectsByDate: TimeSheet;
@@ -106,9 +108,12 @@ export class TimesheetAddEditComponent implements OnInit {
     // date to be in 2020-09-30 format
     this.selectedDate = moment(date).format('dddd, MMM DD, YYYY')
     // need a controller to retrieve projects based on this date selected...
-    const projectDate = moment(date).format("YYYY-MM-DD")
-    console.log(this.authUser.uid)
-    this.api.getProjectsByDate(this.authUser.uid, projectDate)
+    // this.projectDate = date
+    this.projectDate = moment(date).format("YYYY-MM-DD")
+
+
+    this.api.getProjectsByDate("1", this.projectDate)
+      // this.api.getProjectsByDate(this.authUser.uid, this.projectDate)
       .subscribe((response) => {
         console.log(response.data)
         // pass response.data down to form component
