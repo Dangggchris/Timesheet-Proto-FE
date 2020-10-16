@@ -39,13 +39,13 @@ export class FormComponent implements OnInit {
   saveDayHours() {
     // for each row/project, pass the hours through the post.model class
 
-    const newProjectName = this.projectInput.nativeElement.value
+    // const newProjectName = this.projectInput.nativeElement.value
     const newProjectHours = this.hoursInput.nativeElement.value
 
-    const newTimeSheet = new TimeSheet("1", this.projectDate, newProjectName, newProjectHours)
+    const newTimeSheet = new TimeSheet("1", this.projectDate, 1, newProjectHours)
 
     // implement the httpclient requests using api.service.ts - using a put request
-    this.api.saveProjectHours(newTimeSheet)
+    this.api.saveProjectHours(newTimeSheet).subscribe(data => console.log(data))
 
   }
 

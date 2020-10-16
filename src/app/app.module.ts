@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Environment

@@ -112,7 +112,7 @@ export class TimesheetAddEditComponent implements OnInit {
     this.projectDate = moment(date).format("YYYY-MM-DD")
 
 
-    this.api.getProjectsByDate("1", this.projectDate)
+    this.api.getProjectsByDate("1", "1", this.projectDate)
       // this.api.getProjectsByDate(this.authUser.uid, this.projectDate)
       .subscribe((response) => {
         console.log(response.data)
