@@ -1,18 +1,18 @@
+import { DateOption } from 'flatpickr/dist/types/options';
+
 export class TimeSheet {
 
-    public id: number;
-    public uid: number;
+    public user_id: string;
     public date: Date;
-    public projectId: number;
+    public project_id: number;
     public hours: number;
-    public notes: Text;
 
-    constructor(id: number, uid: number, date: Date, projectId: number, hours: number, notes: Text) {
-        this.id = id;
-        this.uid = uid;
+    constructor(uid: string, date: Date, project_id: number, hours: number) {
+
+        this.user_id = uid;
         this.date = date;
-        this.projectId = projectId;
+        this.project_id = project_id;
         this.hours = hours;
-        this.notes = notes;
+
     }
 }

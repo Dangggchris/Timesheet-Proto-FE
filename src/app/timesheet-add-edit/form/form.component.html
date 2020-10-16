@@ -1,0 +1,73 @@
+<div class="modal-header">
+    <h2 class="modal-title">Add Project Hours for {{selectedDate}}</h2>
+</div>
+
+<div class="modal-body">
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="w-75">Project</th>
+                    <th class="w-50">Hours</th>
+                </tr>
+            </thead>
+
+            <!-- if there are projects on this date -->
+
+            <tbody *ngIf="projectsByDate.length > 0; else elseBlock">
+                <tr *ngFor="let project of projectsByDate">
+                    <td>
+                        <input type="text" class="form-control" [(ngModel)]="project.project_id" #projectInput />
+                    </td>
+                    <td>
+                        <input class="form-control" type="number" [(ngModel)]="project.hours" placeholder="0"
+                            #hoursInput>
+                    </td>
+                    <td>
+                        <button mat-button color="primary" (click)="saveDayHours()">
+                            Save </button>
+                    </td>
+                    <td>
+                        <button mat-button color="primary" (click)="submitDayHours()">
+                            Submit </button>
+                    </td>
+                </tr>
+            </tbody>
+
+
+
+            <!-- if no projects on this date -->
+            <ng-template #elseBlock>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" placeholder="Enter Project Name" #projectInput />
+                        </td>
+                        <td>
+                            <input class="form-control" type="number" placeholder="0" #hoursInput>
+                        </td>
+                        <td>
+                            <button mat-button color="primary" (click)="saveDayHours()">
+                                Save </button>
+                        </td>
+                        <td>
+                            <button mat-button color="primary" (click)="submitDayHours()">
+                                Submit </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </ng-template>
+
+        </table>
+    </div>
+
+    <!-- <h4 class="modal-title">Notes</h4>
+    <textarea name="" id="notes" cols="63" rows="7"></textarea> -->
+
+    <h4 class="">Total Hours for </h4>
+
+    <h4 class="float-right mb-3">45 Hours</h4>
+
+</div>
