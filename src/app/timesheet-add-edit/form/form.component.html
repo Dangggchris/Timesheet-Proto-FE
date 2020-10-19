@@ -19,7 +19,8 @@
                 <tr *ngFor="let project of projectsByDate">
                     <td>
                         <!-- Show Project Name -->
-                        <input type="text" class="form-control" [(ngModel)]="project.project_id" #projectInput />
+                        <input type="number" class="form-control" [(ngModel)]="project.projects_id" #projectInput />
+                        <!-- <p>{{project.projects_id}}</p> -->
                     </td>
                     <td>
                         <input class="form-control" type="number" [(ngModel)]="project.hours" placeholder="0"

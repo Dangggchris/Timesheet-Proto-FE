@@ -62,7 +62,7 @@ export class TimesheetAddEditComponent implements OnInit {
     private api: ApiService
   ) { }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }) {
+  dayClicked({ date }: { date: Date }) {
     this.selectedDate = moment(date).format('dddd, MMM DD, YYYY')
     this.projectDate = moment(date).format("YYYY-MM-DD")
 
@@ -90,7 +90,7 @@ export class TimesheetAddEditComponent implements OnInit {
     //  get user-projects table
     this.api.getUserProjects("1").subscribe(response => {
       this.userProjects = response
-      console.log(this.userProjects)
+      // console.log(this.userProjects)
     })
 
 

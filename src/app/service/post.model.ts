@@ -1,5 +1,3 @@
-import { DateOption } from 'flatpickr/dist/types/options';
-
 export class TimeSheet {
 
     public user_id: string;
