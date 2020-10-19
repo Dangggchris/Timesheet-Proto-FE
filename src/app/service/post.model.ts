@@ -8,11 +8,9 @@ export class TimeSheet {
     public hours: number;
 
     constructor(uid: string, date: Date, project_id: number, hours: number) {
-
         this.user_id = uid;
         this.date = date;
         this.project_id = project_id;
         this.hours = hours;
-
     }
 }

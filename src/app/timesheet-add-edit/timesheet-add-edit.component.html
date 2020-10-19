@@ -2,17 +2,17 @@
   <div class="row text-center">
     <div class="col-md-4">
       <div class="btn-group">
-        <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+        <button mat-raised-button color="primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
           (viewDateChange)="closeOpenMonthViewDay()">
           Previous
-        </div>
-        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+        </button>
+        <button mat-button color="primary" mwlCalendarToday [(viewDate)]="viewDate">
           Today
-        </div>
-        <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+        </button>
+        <button mat-raised-button color="primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
           (viewDateChange)="closeOpenMonthViewDay()">
           Next
-        </div>
+        </button>
       </div>
     </div>
     <div class="col-md-4">
@@ -42,7 +42,8 @@
     </button>
   </div>
 
-  <app-form [selectedDate]="selectedDate" [projectsByDate]="projectsByDate" [projectDate]="projectDate"></app-form>
+  <app-form [selectedDate]="selectedDate" [projectsByDate]="projectsByDate" [projectDate]="projectDate"
+    [userProjects]="userProjects"></app-form>
   <div class="modal-footer">
 
     <button type="button" mat-stroked-button color="primary" (click)="close()">

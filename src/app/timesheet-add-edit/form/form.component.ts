@@ -14,11 +14,14 @@ export class FormComponent implements OnInit {
   @Input() selectedDate;
   @Input() projectDate;
   @Input() projectsByDate;
+  @Input() userProjects;
 
   @ViewChild('projectInput', { static: false }) projectInput: ElementRef;
   @ViewChild('hoursInput', { static: false }) hoursInput: ElementRef;
 
   @Output() addProjectHours = new EventEmitter<TimeSheet>()
+
+  totalHours: number = 0;
 
   constructor(
     private authUser: AuthService,
@@ -29,20 +32,18 @@ export class FormComponent implements OnInit {
 
     // do a get request into the modal based on the uid & date
     // need a get request for all projects tied to user, user_projects pivot table, or this will be an input from timesheet-add-edit component
-
+    console.log(this.projectsByDate)
+    this.sumOfHours()
   }
-
-  // pass date from timesheet-add-edit down to form component
-
-  // emit form data back to the timesheet-add-edit component
 
   saveDayHours() {
     // for each row/project, pass the hours through the post.model class
-
-    // const newProjectName = this.projectInput.nativeElement.value
+    const selectedProjectId = 0
+    const newProjectName = this.projectInput.nativeElement.value
     const newProjectHours = this.hoursInput.nativeElement.value
+    // NEED Correct PROJECT ID how to correlate the project id & list of projects.....
 
-    const newTimeSheet = new TimeSheet("1", this.projectDate, 1, newProjectHours)
+    const newTimeSheet = new TimeSheet("1", this.projectDate, newProjectName, newProjectHours)
 
     // implement the httpclient requests using api.service.ts - using a put request
     this.api.saveProjectHours(newTimeSheet).subscribe(data => console.log(data))
@@ -58,6 +59,12 @@ export class FormComponent implements OnInit {
     const newTimeSheet = new TimeSheet(this.authUser.uid, this.selectedDate, newProjectName, newProjectHours)
     console.log(newTimeSheet)
     // implement the httpclient requests using api.service.ts
+  }
+
+  sumOfHours() {
+    for (let i = 0; i < this.projectsByDate.length; i++) {
+      this.totalHours += this.projectsByDate[i].hours
+    }
   }
 
 }

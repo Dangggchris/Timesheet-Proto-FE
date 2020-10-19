@@ -15,10 +15,10 @@
             </thead>
 
             <!-- if there are projects on this date -->
-
             <tbody *ngIf="projectsByDate.length > 0; else elseBlock">
                 <tr *ngFor="let project of projectsByDate">
                     <td>
+                        <!-- Show Project Name -->
                         <input type="text" class="form-control" [(ngModel)]="project.project_id" #projectInput />
                     </td>
                     <td>
@@ -38,7 +38,7 @@
 
 
 
-            <!-- if no projects on this date -->
+            <!-- if no projects on this date, add dropdown of projects list here -->
             <ng-template #elseBlock>
                 <tbody>
                     <tr>
@@ -63,11 +63,8 @@
         </table>
     </div>
 
-    <!-- <h4 class="modal-title">Notes</h4>
-    <textarea name="" id="notes" cols="63" rows="7"></textarea> -->
+    <h4 class="float-left">Total Hours for {{selectedDate}}</h4>
 
-    <h4 class="">Total Hours for </h4>
-
-    <h4 class="float-right mb-3">45 Hours</h4>
+    <h3 class="float-right mb-3">{{totalHours}}</h3>
 
 </div>
