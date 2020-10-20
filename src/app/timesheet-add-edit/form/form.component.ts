@@ -52,18 +52,16 @@ export class FormComponent implements OnInit {
     console.log(this.projects)
   }
 
-  saveDayHours() {
+  saveDayHours(event, item) {
     // for each row/project, pass the hours through the post.model class
 
-    const selectedProjectId = 0
-    const newProjectName = this.projectInput.nativeElement.value
+    const project_id = item
     const newProjectHours = this.hoursInput.nativeElement.value
     // NEED Correct PROJECT ID how to correlate the project id & list of projects.....
 
-    // const newTimeSheet = new TimeSheet("1", this.projectDate, newProjectName, newProjectHours)
-
+    const newTimeSheet = new TimeSheet("1", this.projectDate, project_id, newProjectHours)
     // implement the httpclient requests using api.service.ts - using a put request
-    this.api.saveProjectHours(new TimeSheet("1", this.projectDate, newProjectName, newProjectHours)).subscribe(data => console.log(data))
+    this.api.saveProjectHours(newTimeSheet).subscribe(data => console.log(data))
 
   }
 

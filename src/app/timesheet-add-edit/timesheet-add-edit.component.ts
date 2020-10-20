@@ -67,7 +67,7 @@ export class TimesheetAddEditComponent implements OnInit {
     this.projectDate = moment(date).format("YYYY-MM-DD")
 
     // Take in projects Array?
-    this.api.getProjectsByDate("1", this.projectDate)
+    this.api.getProjectsByDate(this.authUser.uid, this.projectDate)
       // REPLACE WITH(this.authUser.uid, this.projectDate)
       .subscribe((response) => {
         this.projectsByDate = response.data

@@ -20,14 +20,15 @@
                     <td>
                         <!-- Show Project Name -->
                         <!-- <input type="number" class="form-control" [(ngModel)]="project.project_name" #projectInput /> -->
-                        <p>{{project.project_name}}</p>
+                        <h2>{{project.project_name}}</h2>
                     </td>
                     <td>
                         <input class="form-control" type="number" [(ngModel)]="project.timesheet.hours" placeholder="0"
                             #hoursInput>
                     </td>
                     <td>
-                        <button mat-button color="primary" (click)="saveDayHours()">
+                        <button mat-button color="primary"
+                            (click)="saveDayHours($event, project.timesheet.projects_id)">
                             Save </button>
                     </td>
                     <td>
