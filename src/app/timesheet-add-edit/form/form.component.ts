@@ -24,7 +24,7 @@ export class FormComponent implements OnInit {
 
   totalHours: number = 0;
 
-  projects: [];
+  projects = [];
 
   constructor(
     private authUser: AuthService,
@@ -35,24 +35,21 @@ export class FormComponent implements OnInit {
 
     // do a get request into the modal based on the uid & date
     // need a get request for all projects tied to user, user_projects pivot table, or this will be an input from timesheet-add-edit component
-    console.log(this.projectsByDate)
+
 
     // pull in the projects_users array
     // Pull in the projects by date array, loop through array and compare the projects_id with the projects_user.id,
     // if the projects_id === id, create a new joined object and push to the projects array, this array will be displayed on the FE...
     for (let i = 0; i < this.projectsByDate.length; i++) {
       for (let j = 0; j < this.userProjects.length; j++) {
-        if (this.projectsByDate[i].projects_id === this.userProjects[j].id) {
-          const newProject = new Projects(this.userProjects[j].name, this.projectsByDate)
-          console.log(newProject)
-          // this.projects.push(newProject)
+        if (this.projectsByDate[i].projects_id == this.userProjects[j].id) {
+          const projectName = new Projects(this.userProjects[j].name, this.projectsByDate[i])
+          this.projects.push(projectName)
         }
       }
     }
-
-    console.log(this.userProjects)
-
     this.sumOfHours()
+    console.log(this.projects)
   }
 
   saveDayHours() {

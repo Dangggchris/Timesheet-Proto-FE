@@ -16,14 +16,14 @@
 
             <!-- if there are projects on this date -->
             <tbody *ngIf="projectsByDate.length > 0; else elseBlock">
-                <tr *ngFor="let project of projectsByDate">
+                <tr *ngFor="let project of projects">
                     <td>
                         <!-- Show Project Name -->
-                        <input type="number" class="form-control" [(ngModel)]="project.projects_id" #projectInput />
-                        <!-- <p>{{project.projects_id}}</p> -->
+                        <!-- <input type="number" class="form-control" [(ngModel)]="project.project_name" #projectInput /> -->
+                        <p>{{project.project_name}}</p>
                     </td>
                     <td>
-                        <input class="form-control" type="number" [(ngModel)]="project.hours" placeholder="0"
+                        <input class="form-control" type="number" [(ngModel)]="project.timesheet.hours" placeholder="0"
                             #hoursInput>
                     </td>
                     <td>
