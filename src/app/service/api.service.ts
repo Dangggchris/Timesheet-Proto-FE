@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { environment } from '../../environments/environment.localhost'
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { TimeSheet } from './post.model'
+import { TimeSheet } from './timsheet.model'
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +56,8 @@ export class ApiService {
 
   // PUT/UPDATE
   saveProjectHours(timeSheet: TimeSheet): Observable<void> {
+    console.log(timeSheet)
+
     return this.http.put<void>(
       environment.apiURL + `/api/dailytimesheet/userid=${timeSheet.user_id}/projectid=${timeSheet.project_id}`,
       timeSheet,
@@ -68,6 +70,7 @@ export class ApiService {
 
   // POST
   submitProjectHours(timeSheet: TimeSheet): Observable<void> {
+
     return this.http.post<void>(
       environment.apiURL + `/api/dailytimesheet/userid=${timeSheet.user_id}/projectid=${timeSheet.project_id}`,
       timeSheet,

@@ -20,7 +20,17 @@
                     <td>
                         <!-- Show Project Name -->
                         <!-- <input type="number" class="form-control" [(ngModel)]="project.project_name" #projectInput /> -->
-                        <h2>{{project.project_name}}</h2>
+                        <!-- <h2>{{project.project_name}}</h2> -->
+
+                        <div *ngIf="project.project_name;then content else other_content">here is ignored</div>
+                        <ng-template #content>
+                            <h2>{{project.project_name}}</h2>
+                        </ng-template>
+                        <ng-template #other_content>
+                            <select matNativeControl required>
+                                <option *ngFor="let project of userProjects" value="project.id">{{project.name}}
+                                </option>
+                            </select></ng-template>
                     </td>
                     <td>
                         <input class="form-control" type="number" [(ngModel)]="project.timesheet.hours" placeholder="0"
@@ -36,6 +46,12 @@
                             Submit </button>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <button mat-button color="primary" (click)="addRow()">
+                            Add A project </button>
+                    </td>
+                </tr>
             </tbody>
 
 
@@ -45,7 +61,12 @@
                 <tbody>
                     <tr>
                         <td>
-                            <input type="text" class="form-control" placeholder="Enter Project Name" #projectInput />
+                            <!-- <input type="text" class="form-control" placeholder="Enter Project Name" #projectInput /> -->
+                            <select matNativeControl required>
+                                <option *ngFor="let project of userProjects" value="project.id">{{project.name}}
+                                </option>
+
+                            </select>
                         </td>
                         <td>
                             <input class="form-control" type="number" placeholder="0" #hoursInput>
@@ -55,8 +76,14 @@
                                 Save </button>
                         </td>
                         <td>
-                            <button mat-button color="primary" (click)="submitDayHours()">
+                            <button mat-button color="primary">
                                 Submit </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button mat-button color="primary">
+                                Add A project </button>
                         </td>
                     </tr>
                 </tbody>

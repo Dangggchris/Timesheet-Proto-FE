@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../service/auth.service'
 import { ApiService } from '../service/api.service'
-import { TimeSheet } from '../service/post.model'
+import { TimeSheet } from '../service/timsheet.model'
 
 
 
@@ -90,7 +90,7 @@ export class TimesheetAddEditComponent implements OnInit {
     //  get user-projects table
     this.api.getUserProjects("1").subscribe(response => {
       this.userProjects = response
-      // console.log(this.userProjects)
+      console.log(response)
     })
 
 

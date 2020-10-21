@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
-import { TimeSheet } from '../../service/post.model'
+import { TimeSheet } from '../../service/timsheet.model'
 import * as moment from 'moment';
 import { ApiService } from '../../service/api.service'
 import { Projects } from '../../service/project.model'
@@ -35,8 +35,6 @@ export class FormComponent implements OnInit {
 
     // do a get request into the modal based on the uid & date
     // need a get request for all projects tied to user, user_projects pivot table, or this will be an input from timesheet-add-edit component
-
-
     // pull in the projects_users array
     // Pull in the projects by date array, loop through array and compare the projects_id with the projects_user.id,
     // if the projects_id === id, create a new joined object and push to the projects array, this array will be displayed on the FE...
@@ -49,6 +47,14 @@ export class FormComponent implements OnInit {
       }
     }
     this.sumOfHours()
+
+    console.log(this.userProjects)
+  }
+
+
+  ngDoCheck() {
+    this.totalHours = 0
+    this.sumOfHours()
     console.log(this.projects)
   }
 
@@ -57,7 +63,6 @@ export class FormComponent implements OnInit {
 
     const project_id = item
     const newProjectHours = this.hoursInput.nativeElement.value
-    // NEED Correct PROJECT ID how to correlate the project id & list of projects.....
 
     const newTimeSheet = new TimeSheet("1", this.projectDate, project_id, newProjectHours)
     // implement the httpclient requests using api.service.ts - using a put request
@@ -67,19 +72,22 @@ export class FormComponent implements OnInit {
 
 
   submitDayHours() {
-    // for each row/project, pass the hours through the post.model class
     const newProjectName = this.projectInput.nativeElement.value
     const newProjectHours = this.hoursInput.nativeElement.value
 
-    const newTimeSheet = new TimeSheet(this.authUser.uid, this.selectedDate, newProjectName, newProjectHours)
+    const newTimeSheet = new TimeSheet("1", this.selectedDate, newProjectName, newProjectHours)
     console.log(newTimeSheet)
-    // implement the httpclient requests using api.service.ts
   }
 
   sumOfHours() {
     for (let i = 0; i < this.projectsByDate.length; i++) {
       this.totalHours += this.projectsByDate[i].hours
     }
+  }
+
+  addRow() {
+    const blankProject = new Projects('', {})
+    this.projects.push(blankProject)
   }
 
 }
