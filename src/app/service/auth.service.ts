@@ -14,6 +14,7 @@ import { switchMap } from 'rxjs/operators'
 
 export class AuthService {
   user$: Observable<User>;
+  uid: string;
   public userToken: string;
 
   constructor(
@@ -36,7 +37,7 @@ export class AuthService {
   private updateUserData(user) {
     // Sets user data to firestore on login, can implement custom data if necessary
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-
+    this.uid = user.uid
     const data = {
       uid: user.uid,
       email: user.email,

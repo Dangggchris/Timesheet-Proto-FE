@@ -7,6 +7,8 @@ import * as moment from 'moment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../service/auth.service'
 import { ApiService } from '../service/api.service'
+import { TimeSheet } from '../service/post.model'
+
 
 
 export function momentAdapterFactory() {
@@ -30,9 +32,11 @@ export class TimesheetAddEditComponent implements OnInit {
 
   selectedDate: string;
 
-  uid: string;
+  projectDate: string;
 
-  // projectsByDate: Array<any>;
+  // uid: string;
+
+  projectsByDate: TimeSheet;
 
   modalData: {
     action: string;
@@ -46,6 +50,8 @@ export class TimesheetAddEditComponent implements OnInit {
   refresh: Subject<any> = new Subject();
 
   // replace Events with some projects object
+
+
   projects = [
 
     {
@@ -102,12 +108,17 @@ export class TimesheetAddEditComponent implements OnInit {
     // date to be in 2020-09-30 format
     this.selectedDate = moment(date).format('dddd, MMM DD, YYYY')
     // need a controller to retrieve projects based on this date selected...
-    const projectDate = moment(date).format("YYYY-MM-DD")
-    console.log(projectDate)
+    // this.projectDate = date
+    this.projectDate = moment(date).format("YYYY-MM-DD")
 
-    this.api.getProjectsByDate("1", projectDate)
+
+    // Take in projects Array?
+    this.api.getProjectsByDate("1", "1", this.projectDate)
+      // this.api.getProjectsByDate(this.authUser.uid, this.projectDate)
       .subscribe((response) => {
-        console.log(response)
+        console.log(response.data)
+        // pass response.data down to form component
+        this.projectsByDate = response.data
         this.openModal()
       })
     // need to async/await testData
@@ -154,19 +165,19 @@ export class TimesheetAddEditComponent implements OnInit {
   //   ];
   // }
 
-  addProjectHours(): void {
-    this.projects = [
-      ...this.projects,
+  // addProjectHours(): void {
+  //   this.projects = [
+  //     ...this.projects,
 
-      {
-        uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-        title: 'Project 1',
-        date: subDays(endOfMonth(new Date()), 5),
-        hours: 25
-      },
+  //     {
+  //       uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
+  //       title: 'Project 1',
+  //       date: "2020-10-13",
+  //       hours: 25
+  //     },
 
-    ]
-  }
+  //   ]
+  // }
 
 
   closeOpenMonthViewDay() {
@@ -181,8 +192,13 @@ export class TimesheetAddEditComponent implements OnInit {
 
   ngOnInit(): void {
     // httpClient get requests auth.user.uid...
-    this.authUser.user$
-
+    // this.authUser.user$.forEach(item => {
+    //   if (item.uid !== '') {
+    //     console.log(item.uid)
+    //     this.uid = item.uid
+    //   }
+    // })
+    // afs/firestore/credentials/currentuser/uid
   }
 
   saveDayHours(projectHours) {
