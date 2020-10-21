@@ -18,7 +18,7 @@ export class FormComponent implements OnInit {
   @Input() userProjects;
 
   @ViewChild('projectInput', { static: false }) projectInput: ElementRef;
-  @ViewChild('hoursInput', { static: false }) hoursInput: ElementRef;
+  // @ViewChild('hoursInput', { static: false }) hoursInput: ElementRef;
 
   @Output() addProjectHours = new EventEmitter<TimeSheet>()
 
@@ -47,36 +47,36 @@ export class FormComponent implements OnInit {
       }
     }
     this.sumOfHours()
-
-    console.log(this.userProjects)
   }
 
 
   ngDoCheck() {
     this.totalHours = 0
     this.sumOfHours()
-    console.log(this.projects)
+    // console.log(this.projects)
   }
 
-  saveDayHours(event, item) {
+  saveDayHours(event, id, hours) {
     // for each row/project, pass the hours through the post.model class
 
-    const project_id = item
-    const newProjectHours = this.hoursInput.nativeElement.value
-
-    const newTimeSheet = new TimeSheet("1", this.projectDate, project_id, newProjectHours)
+    const project_id = id
+    console.log(project_id)
+    // const newProjectHours = this.hoursInput.nativeElement.value
+    console.log(hours)
+    const newTimeSheet = new TimeSheet("1", this.projectDate, project_id, hours)
     // implement the httpclient requests using api.service.ts - using a put request
-    this.api.saveProjectHours(newTimeSheet).subscribe(data => console.log(data))
+    this.api.saveProjectHours(newTimeSheet)
+      .subscribe(data => console.log(data))
 
   }
 
 
   submitDayHours() {
-    const newProjectName = this.projectInput.nativeElement.value
-    const newProjectHours = this.hoursInput.nativeElement.value
+    // const newProjectName = this.projectInput.nativeElement.value
+    // const newProjectHours = this.hoursInput.nativeElement.value
 
-    const newTimeSheet = new TimeSheet("1", this.selectedDate, newProjectName, newProjectHours)
-    console.log(newTimeSheet)
+    // const newTimeSheet = new TimeSheet("1", this.selectedDate, newProjectName, newProjectHours)
+    // console.log(newTimeSheet)
   }
 
   sumOfHours() {

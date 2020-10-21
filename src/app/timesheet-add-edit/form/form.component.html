@@ -30,19 +30,19 @@
                             <select matNativeControl required>
                                 <option *ngFor="let project of userProjects" value="project.id">{{project.name}}
                                 </option>
-                            </select></ng-template>
+                            </select>
+                        </ng-template>
                     </td>
                     <td>
-                        <input class="form-control" type="number" [(ngModel)]="project.timesheet.hours" placeholder="0"
-                            #hoursInput>
+                        <input class="form-control" type="number" [(ngModel)]="project.timesheet.hours">
                     </td>
                     <td>
                         <button mat-button color="primary"
-                            (click)="saveDayHours($event, project.timesheet.projects_id)">
+                            (click)="saveDayHours($event, project.timesheet.projects_id, project.timesheet.hours)">
                             Save </button>
                     </td>
                     <td>
-                        <button mat-button color="primary" (click)="submitDayHours()">
+                        <button mat-button color="primary">
                             Submit </button>
                     </td>
                 </tr>

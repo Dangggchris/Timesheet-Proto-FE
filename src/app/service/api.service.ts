@@ -39,6 +39,7 @@ export class ApiService {
       })
       .subscribe(responseData => {
         console.log(responseData)
+        console.log('here')
       },
         error => console.log(error));
   }
