@@ -8,3 +8,8 @@ mat-grid-tile {
     top: 0; /* Sets the sticky toolbar to be on top */
     z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
 }
+
+.main-card {
+    align-content: center;
+    margin: auto;
+}
