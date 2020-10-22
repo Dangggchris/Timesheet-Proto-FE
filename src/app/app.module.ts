@@ -13,6 +13,8 @@ import { environment } from 'src/environments/environment.localhost';
 
 // Angular Material Module
 import { MaterialModule } from './material/material.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 // Angular Components
 import { AppComponent } from './app.component';
@@ -30,6 +32,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { FormComponent } from './timesheet-add-edit/form/form.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 
 
@@ -42,7 +45,8 @@ import { FormComponent } from './timesheet-add-edit/form/form.component';
     TimesheetHistoryComponent,
     TimesheetHistoryProjectComponent,
     TimesheetMainComponent,
-    FormComponent
+    FormComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +54,8 @@ import { FormComponent } from './timesheet-add-edit/form/form.component';
     BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
+    MatButtonModule,
+    MatDialogModule,
     NgbModalModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({

@@ -1,23 +1,8 @@
 <div class="container">
     <h1 class="header">History</h1>
     <div class="row">
-        <span class="box">
-            <h2>Project 1</h2>
-            <h1>50</h1>
-            <h3>Hours Worked</h3>
-            <a>See complete history</a>
-        </span>
-        <span class="box">
-            <h2>Project 2</h2>
-            <h1>50</h1>
-            <h3>Hours Worked</h3>
-            <a>See complete history</a>
-        </span>
-        <span class="box">
-            <h2>Project 3</h2>
-            <h1>50</h1>
-            <h3>Hours Worked</h3>
-            <a>See complete history</a>
-        </span>
+        <app-timesheet-history-project class="box" [hours]="'42'" [name]="'Project 1'"></app-timesheet-history-project>
+        <app-timesheet-history-project class="box" [hours]="'77'" [name]="'Project 2'"></app-timesheet-history-project>
+        <app-timesheet-history-project class="box" [hours]="'49'" [name]="'Project 3'"></app-timesheet-history-project>
     </div>
 </div>

@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 // import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component';
 import { TimesheetAddEditComponent } from './timesheet-add-edit/timesheet-add-edit.component';
 import { TimesheetHistoryComponent } from './timesheet-history/timesheet-history.component';
+import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-history-project/timesheet-history-project.component';
 
 
 const routes: Routes = [
@@ -34,12 +35,13 @@ const routes: Routes = [
   {
     path: 'history',
     component: TimesheetHistoryComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: '**',
     component: LoginComponent
-  }
+  },
+
 ];
 
 @NgModule({
