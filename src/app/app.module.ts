@@ -19,7 +19,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 // Angular Components
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component';

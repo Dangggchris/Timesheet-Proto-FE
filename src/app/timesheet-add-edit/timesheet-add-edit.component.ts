@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../service/auth.service'
 import { ApiService } from '../service/api.service'
-import { TimeSheet } from '../service/post.model'
+import { TimeSheet } from '../service/timsheet.model'
 
 
 
@@ -34,6 +34,8 @@ export class TimesheetAddEditComponent implements OnInit {
 
   projectDate: string;
 
+  userProjects: [];
+
   // uid: string;
 
   projectsByDate: TimeSheet;
@@ -51,48 +53,6 @@ export class TimesheetAddEditComponent implements OnInit {
 
   // replace Events with some projects object
 
-
-  projects = [
-
-    {
-      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-      title: 'Project 1',
-      date: startOfDay(new Date()),
-      hours: 15
-    },
-    {
-      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-      title: 'Project 2',
-      date: startOfDay(new Date()),
-      hours: 25
-    },
-    {
-      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-      title: 'Project 3',
-      date: subDays(endOfMonth(new Date()), 3),
-      hours: 15
-    },
-    {
-      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-      title: 'Project 4',
-      date: subDays(endOfMonth(new Date()), 2),
-      hours: 25
-    },
-    {
-      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-      title: 'Project 5',
-      date: subDays(endOfMonth(new Date()), 4),
-      hours: 15
-    },
-    {
-      uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-      title: 'Project 5',
-      date: subDays(endOfMonth(new Date()), 5),
-      hours: 25
-    },
-
-  ];
-
   activeDayIsOpen: boolean = false;
 
   // will need to import NgbModal
@@ -102,114 +62,37 @@ export class TimesheetAddEditComponent implements OnInit {
     private api: ApiService
   ) { }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }) {
-    // trigger the modal HERE to timesheet-day component
-
-    // date to be in 2020-09-30 format
+  dayClicked({ date }: { date: Date }) {
     this.selectedDate = moment(date).format('dddd, MMM DD, YYYY')
-    // need a controller to retrieve projects based on this date selected...
-    // this.projectDate = date
     this.projectDate = moment(date).format("YYYY-MM-DD")
 
-
     // Take in projects Array?
-    this.api.getProjectsByDate("1", "1", this.projectDate)
-      // this.api.getProjectsByDate(this.authUser.uid, this.projectDate)
+    this.api.getProjectsByDate(this.api.user_ID, this.projectDate)
+      // REPLACE WITH(this.authUser.uid, this.projectDate)
       .subscribe((response) => {
-        console.log(response.data)
-        // pass response.data down to form component
         this.projectsByDate = response.data
-        this.openModal()
+        console.log(response)
+        // OPEN MODAL
+        this.modalService.open(this.modalContent)
       })
-    // need to async/await testData
   }
-
-  // eventTimesChanged({
-  //   event,
-  //   newStart,
-  //   newEnd,
-  // }: CalendarEventTimesChangedEvent): void {
-  //   this.events = this.events.map((iEvent) => {
-  //     if (iEvent === event) {
-  //       return {
-  //         ...event,
-  //         start: newStart,
-  //         end: newEnd,
-  //       };
-  //     }
-  //     return iEvent;
-  //   });
-  //   this.handleEvent('Dropped or resized', event);
-  // }
-
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
     this.modalService.open(this.modalContent, { size: 'sm' });
   }
 
-  // addEvent(): void {
-  //   this.events = [
-  //     ...this.events,
-  //     {
-  //       title: 'New event',
-  //       start: startOfDay(new Date()),
-  //       end: endOfDay(new Date()),
-  //       color: colors.red,
-  //       draggable: true,
-  //       resizable: {
-  //         beforeStart: true,
-  //         afterEnd: true,
-  //       },
-  //     },
-  //   ];
-  // }
-
-  // addProjectHours(): void {
-  //   this.projects = [
-  //     ...this.projects,
-
-  //     {
-  //       uid: "Un8N7w7Hn0e2hkp47f2HXR45myv2",
-  //       title: 'Project 1',
-  //       date: "2020-10-13",
-  //       hours: 25
-  //     },
-
-  //   ]
-  // }
-
-
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
 
-  openModal() {
-    // get request all projects based on the date input
-    this.modalService.open(this.modalContent)
-
-  }
-
   ngOnInit(): void {
-    // httpClient get requests auth.user.uid...
-    // this.authUser.user$.forEach(item => {
-    //   if (item.uid !== '') {
-    //     console.log(item.uid)
-    //     this.uid = item.uid
-    //   }
-    // })
-    // afs/firestore/credentials/currentuser/uid
+    //  get user-projects table
+    this.api.getUserProjects(this.api.user_ID).subscribe(response => {
+      this.userProjects = response
+      console.log(response)
+    })
+
+
   }
-
-  saveDayHours(projectHours) {
-    // for each row/project, pass the hours through the post.model class
-    // implement the httpclient requests using api.service.ts
-  }
-
-
-  submitDayHours(projectHours) {
-    // for each row/project, pass the hours through the post.model class
-    // implement the httpclient requests using api.service.ts
-  }
-
 }

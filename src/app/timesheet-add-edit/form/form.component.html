@@ -15,35 +15,58 @@
             </thead>
 
             <!-- if there are projects on this date -->
-
             <tbody *ngIf="projectsByDate.length > 0; else elseBlock">
-                <tr *ngFor="let project of projectsByDate">
+                <tr *ngFor="let project of projects">
                     <td>
-                        <input type="text" class="form-control" [(ngModel)]="project.project_id" #projectInput />
+                        <!-- Show Project Name -->
+                        <!-- <input type="number" class="form-control" [(ngModel)]="project.project_name" #projectInput /> -->
+                        <!-- <h2>{{project.project_name}}</h2> -->
+
+                        <div *ngIf="project.project_name;then content else other_content">here is ignored</div>
+                        <ng-template #content>
+                            <h2>{{project.project_name}}</h2>
+                        </ng-template>
+                        <ng-template #other_content>
+                            <select matNativeControl required>
+                                <option *ngFor="let project of userProjects" value="project.id">{{project.name}}
+                                </option>
+                            </select>
+                        </ng-template>
                     </td>
                     <td>
-                        <input class="form-control" type="number" [(ngModel)]="project.hours" placeholder="0"
-                            #hoursInput>
+                        <input class="form-control" type="number" [(ngModel)]="project.timesheet.hours">
                     </td>
                     <td>
-                        <button mat-button color="primary" (click)="saveDayHours()">
+                        <button mat-button color="primary"
+                            (click)="saveDayHours($event, project.timesheet.projects_id, project.timesheet.hours)">
                             Save </button>
                     </td>
                     <td>
-                        <button mat-button color="primary" (click)="submitDayHours()">
+                        <button mat-button color="primary">
                             Submit </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button mat-button color="primary" (click)="addRow()">
+                            Add A project </button>
                     </td>
                 </tr>
             </tbody>
 
 
 
-            <!-- if no projects on this date -->
+            <!-- if no projects on this date, add dropdown of projects list here -->
             <ng-template #elseBlock>
                 <tbody>
                     <tr>
                         <td>
-                            <input type="text" class="form-control" placeholder="Enter Project Name" #projectInput />
+                            <!-- <input type="text" class="form-control" placeholder="Enter Project Name" #projectInput /> -->
+                            <select matNativeControl required>
+                                <option *ngFor="let project of userProjects" value="project.id">{{project.name}}
+                                </option>
+
+                            </select>
                         </td>
                         <td>
                             <input class="form-control" type="number" placeholder="0" #hoursInput>
@@ -53,8 +76,14 @@
                                 Save </button>
                         </td>
                         <td>
-                            <button mat-button color="primary" (click)="submitDayHours()">
+                            <button mat-button color="primary">
                                 Submit </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button mat-button color="primary">
+                                Add A project </button>
                         </td>
                     </tr>
                 </tbody>
@@ -63,11 +92,8 @@
         </table>
     </div>
 
-    <!-- <h4 class="modal-title">Notes</h4>
-    <textarea name="" id="notes" cols="63" rows="7"></textarea> -->
+    <h4 class="float-left">Total Hours for {{selectedDate}}</h4>
 
-    <h4 class="">Total Hours for </h4>
-
-    <h4 class="float-right mb-3">45 Hours</h4>
+    <h3 class="float-right mb-3">{{totalHours}}</h3>
 
 </div>
