@@ -24,11 +24,22 @@ export class LoginComponent implements OnInit {
     // 1. sign in using google
     this.auth.googleSignIn()
     // 2. set the user token
-    const firebasetoken = this.auth.userToken
+    // const firebasetoken = this.auth.userToken
     // 3. send user toke to laravel
+    // this.api.credentialsToLaravel(firebasetoken)
+    this.laravelCredntials()
+  }
+
+
+  async laravelCredntials() {
+
+    const firebasetoken = await this.auth.getToken()
+    console.log(firebasetoken)
     this.api.credentialsToLaravel(firebasetoken)
 
   }
+
+
 
 }
 
