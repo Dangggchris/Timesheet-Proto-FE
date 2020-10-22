@@ -11,6 +11,7 @@ import { TimeSheet } from './timsheet.model'
 export class ApiService {
 
   firebasetoken: string;
+  user_ID;
 
   constructor(
     private http: HttpClient,
@@ -28,7 +29,7 @@ export class ApiService {
   }
 
   credentialsToLaravel(token) {
-    this.http.post(environment.apiURL + '/api/login', {
+    this.http.put(environment.apiURL + '/api/login', {
       Firebasetoken: token
     }
       , {
@@ -39,7 +40,7 @@ export class ApiService {
       })
       .subscribe(responseData => {
         console.log(responseData)
-        console.log('here')
+        this.user_ID = responseData
       },
         error => console.log(error));
   }

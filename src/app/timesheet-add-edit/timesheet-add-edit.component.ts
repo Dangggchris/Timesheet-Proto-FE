@@ -67,11 +67,11 @@ export class TimesheetAddEditComponent implements OnInit {
     this.projectDate = moment(date).format("YYYY-MM-DD")
 
     // Take in projects Array?
-    this.api.getProjectsByDate("1", this.projectDate)
+    this.api.getProjectsByDate(this.api.user_ID, this.projectDate)
       // REPLACE WITH(this.authUser.uid, this.projectDate)
       .subscribe((response) => {
         this.projectsByDate = response.data
-        console.log(this.projectDate)
+        console.log(response)
         // OPEN MODAL
         this.modalService.open(this.modalContent)
       })
@@ -88,7 +88,7 @@ export class TimesheetAddEditComponent implements OnInit {
 
   ngOnInit(): void {
     //  get user-projects table
-    this.api.getUserProjects("1").subscribe(response => {
+    this.api.getUserProjects(this.api.user_ID).subscribe(response => {
       this.userProjects = response
       console.log(response)
     })
