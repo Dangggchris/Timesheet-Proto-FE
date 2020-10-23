@@ -38,9 +38,6 @@ export class LoginComponent implements OnInit {
     this.api.credentialsToLaravel(firebasetoken)
 
   }
-
-
-
 }
 
 

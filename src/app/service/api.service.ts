@@ -47,13 +47,18 @@ export class ApiService {
 
   // UPDATED API
   // GET LIST OF PROJECTS BY USER ID
-  getUserProjects(uid): Observable<any> {
-    return this.http.get<any>(`${environment.apiURL}/api/projects/${uid}`)
+  getUserProjects(user_ID): Observable<any> {
+    return this.http.get<any>(`${environment.apiURL}/api/projects/${user_ID}`)
   }
 
   // GET PROJECTS BY USER ID, PROJECT ID, DATE
-  getProjectsByDate(uid, date): Observable<any> {
-    return this.http.get<any>(environment.apiURL + `/api/dailytimesheet/userid=${uid}/${date}`)
+  getProjectsByDate(user_ID, date): Observable<any> {
+    return this.http.get<any>(environment.apiURL + `/api/dailytimesheet/userid=${user_ID}/${date}`)
+  }
+
+  // GET TIMESHEETS BY USER ID
+  getAllTimesheetsForUser(user_ID): Observable<any>  {
+    return this.http.get<any>(environment.apiURL + `/api/dailytimesheet/userid=${user_ID}`)
   }
 
   // PUT/UPDATE
