@@ -12,17 +12,18 @@ import { ApiService } from '../service/api.service'
 export class TimesheetHistoryComponent implements OnInit {
 
   userProjects: [];
-
+  projectid:number;
 
   constructor(private modalService: NgbModal,
     public authUser: AuthService,
     private api: ApiService) { }
 
   ngOnInit(): void {
-    // this.api.getUserProjects(this.api.user_ID).subscribe(response => {
-    //   this.userProjects = response
-    //   console.log(response)
-    // })
+    this.api.getUserProjects(this.api.user_ID).subscribe(response => {
+       //console.log("THIS IS THE USER ID", this.api.user_ID)
+       this.userProjects = response
+       console.log("THIS IS THE RESPONSE: ", response)
+    })
   }
 
 }

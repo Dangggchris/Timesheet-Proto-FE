@@ -62,17 +62,20 @@
                     <tr>
                         <td>
                             <!-- <input type="text" class="form-control" placeholder="Enter Project Name" #projectInput /> -->
-                            <select matNativeControl required>
-                                <option *ngFor="let project of userProjects" value="project.id">{{project.name}}
+                            <select matNativeControl required [(ngModel)]="projectid" (ngModelChange)="toNumber()">
+                                <option *ngFor="let project of userProjects" [ngvalue]="project.id">{{project.name}}
+                                    <!-- <input type="number" class="form-control" [(ngModel)]="project.project_name" #projectInput /> -->
                                 </option>
 
                             </select>
+                            {{projectid}}
                         </td>
                         <td>
                             <input class="form-control" type="number" placeholder="0" #hoursInput>
                         </td>
                         <td>
-                            <button mat-button color="primary" (click)="saveDayHours()">
+                            <!-- the numner 5 is hard coded, this is where the number of hours selected should go -->
+                            <button mat-button color="primary" (click)="saveDayHours($event, projectid, 5)">
                                 Save </button>
                         </td>
                         <td>
