@@ -27,18 +27,23 @@
                             <h2>{{project.project_name}}</h2>
                         </ng-template>
                         <ng-template #other_content>
-                            <select matNativeControl required>
+                            <!-- <select matNativeControl required>
                                 <option *ngFor="let project of userProjects" value="project.id">{{project.name}}
+                                </option>
+                            </select> -->
+                            <select matNativeControl required [(ngModel)]="projectid">
+                                <option *ngFor="let project of userProjects" [ngvalue]="project.id">{{project.id}}
+                                    <!-- <input type="number" class="form-control" [(ngModel)]="project.project_name" #projectInput /> -->
                                 </option>
                             </select>
                         </ng-template>
                     </td>
                     <td>
-                        <input class="form-control" type="number" [(ngModel)]="project.timesheet.hours">
+                        <input class="form-control" type="number" placeholder="0" [(ngModel)]="project.timesheet.hours">
                     </td>
                     <td>
                         <button mat-button color="primary"
-                            (click)="saveDayHours($event, project.timesheet.projects_id, project.timesheet.hours)">
+                            (click)="saveDayHours($event, projectid, project.timesheet.hours)">
                             Save </button>
                     </td>
                     <td>
@@ -62,20 +67,19 @@
                     <tr>
                         <td>
                             <!-- <input type="text" class="form-control" placeholder="Enter Project Name" #projectInput /> -->
-                            <select matNativeControl required [(ngModel)]="projectid" (ngModelChange)="toNumber()">
-                                <option *ngFor="let project of userProjects" [ngvalue]="project.id">{{project.name}}
+                            <select matNativeControl required [(ngModel)]="projectid">
+                                <option *ngFor="let project of userProjects" [ngvalue]="project.id">{{project.id}}
                                     <!-- <input type="number" class="form-control" [(ngModel)]="project.project_name" #projectInput /> -->
                                 </option>
 
                             </select>
-                            {{projectid}}
                         </td>
                         <td>
-                            <input class="form-control" type="number" placeholder="0" #hoursInput>
+                            <input class="form-control" type="number" placeholder="0" [(ngModel)]="projecthours">
                         </td>
                         <td>
                             <!-- the numner 5 is hard coded, this is where the number of hours selected should go -->
-                            <button mat-button color="primary" (click)="saveDayHours($event, projectid, 5)">
+                            <button mat-button color="primary" (click)="saveDayHours($event, projectid, projecthours)">
                                 Save </button>
                         </td>
                         <td>
