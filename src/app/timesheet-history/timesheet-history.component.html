@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="header">History</h1>
     <div class="row">
-        <app-timesheet-history-project *ngFor="let project of userProjects" class="box" [name]="project.name"></app-timesheet-history-project>
+        <app-timesheet-history-project *ngFor="let project of projectInfo" class="box" [hours]="project.hours" [name]="project.name"></app-timesheet-history-project>
     </div>
 </div>
 

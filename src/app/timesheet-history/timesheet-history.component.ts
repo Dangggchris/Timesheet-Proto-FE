@@ -13,7 +13,9 @@ export class TimesheetHistoryComponent implements OnInit {
 
   userProjects: [];
   userTimesheets: [];
+  projectDict: {};
   projectid:number;
+  projectInfo: any[];
 
   constructor(private modalService: NgbModal,
     public authUser: AuthService,
@@ -22,29 +24,43 @@ export class TimesheetHistoryComponent implements OnInit {
   ngOnInit(): void {
     this.api.getUserProjects(this.api.user_ID).subscribe(response => {
        //console.log("THIS IS THE USER ID", this.api.user_ID)
-       this.userProjects = response
+       this.userProjects = response;
+       let myDict = {};
+       //console.log("userproject", this.userProjects)
+       for(let project in this.userProjects){
+          myDict[this.userProjects[project]["id"]] = this.userProjects[project];
+      }
+      this.projectDict = myDict;
+      console.log("DICTIONARY", this.projectDict);
        //console.log("THIS IS THE RESPONSE: ", response)
     })
 
     this.api.getProjectTimesheets(this.api.user_ID).subscribe(response => {
       this.userTimesheets = response;
       let projectHours = {};
-      console.log("IS IT AN ARRAY? ", Array.isArray(this.userTimesheets))
-      let test = [1, 2, 3, 4]
-      // this.userTimesheets.forEach(function(timesheet){
-      //   console.log("EACH TIEMSHEET", timesheet);
-      // })
+
       for(let timesheet in this.userTimesheets["data"]){
-        console.log(this.userTimesheets["data"][timesheet]["projects_id"])
-        if(this.userTimesheets["data"][timesheet]["projects_id"] in projectHours){
-          projectHours[this.userTimesheets["data"][timesheet]["projects_id"]] += this.userTimesheets["data"][timesheet]["hours"];
-        }
-        else{
-          projectHours[this.userTimesheets["data"][timesheet]["projects_id"]] = this.userTimesheets["data"][timesheet]["hours"];
-        }
+        let curr_project = this.userTimesheets["data"][timesheet]
+
+        if(curr_project["projects_id"] != "undefined") {
+          if(curr_project["projects_id"] in projectHours){
+           projectHours[curr_project["projects_id"]] = {"hours": curr_project["hours"] + projectHours[curr_project["projects_id"]]["hours"], "name": this.projectDict[curr_project["projects_id"]]["name"]};
+          }
+          else{
+           projectHours[curr_project["projects_id"]] = {"hours": curr_project["hours"], "name": this.projectDict[curr_project["projects_id"]]["name"]}
+          }
+        }        
+        
       }
+
+      let proj_info = []
+      for(let info in projectHours){
+        //console.log("INFO", projectHours[info])
+        proj_info.push(projectHours[info])
+      }
+      this.projectInfo = proj_info;
       console.log("THESE ARE THE TIMESHEET HOURS: ", projectHours);
-      console.log(this.userTimesheets)
+      //console.log("User Projects: ", this.userProjects)
     })
   }
 
