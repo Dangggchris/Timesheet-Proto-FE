@@ -27,19 +27,24 @@ export class TimesheetHistoryComponent implements OnInit {
     })
 
     this.api.getProjectTimesheets(this.api.user_ID).subscribe(response => {
-      let userTimesheets = response;
+      this.userTimesheets = response;
       let projectHours = {};
+      console.log("IS IT AN ARRAY? ", Array.isArray(this.userTimesheets))
       let test = [1, 2, 3, 4]
-      for(var timesheet in test){
-        console.log("TIMESHEET VALUE", timesheet)
-        // if(timesheet["projects_id"] in projectHours){
-        //   projectHours[timesheet["projects_id"]] += timesheet["hours"];
-        // }
-        // else{
-        //   projectHours[timesheet["projects_id"]] = timesheet["hours"];
-        // }
+      // this.userTimesheets.forEach(function(timesheet){
+      //   console.log("EACH TIEMSHEET", timesheet);
+      // })
+      for(let timesheet in this.userTimesheets["data"]){
+        console.log(this.userTimesheets["data"][timesheet]["projects_id"])
+        if(this.userTimesheets["data"][timesheet]["projects_id"] in projectHours){
+          projectHours[this.userTimesheets["data"][timesheet]["projects_id"]] += this.userTimesheets["data"][timesheet]["hours"];
+        }
+        else{
+          projectHours[this.userTimesheets["data"][timesheet]["projects_id"]] = this.userTimesheets["data"][timesheet]["hours"];
+        }
       }
       console.log("THESE ARE THE TIMESHEET HOURS: ", projectHours);
+      console.log(this.userTimesheets)
     })
   }
 
