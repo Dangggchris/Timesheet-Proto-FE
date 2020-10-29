@@ -51,6 +51,10 @@ export class ApiService {
     return this.http.get<any>(`${environment.apiURL}/api/projects/${uid}`)
   }
 
+  getProjectTimesheets(uid): Observable<any> {
+    return this.http.get<any>(`${environment.apiURL}/api/dailytimesheet/userid=${uid}`)
+  }
+
   // GET PROJECTS BY USER ID, PROJECT ID, DATE
   getProjectsByDate(uid, date): Observable<any> {
     return this.http.get<any>(environment.apiURL + `/api/dailytimesheet/userid=${uid}/${date}`)

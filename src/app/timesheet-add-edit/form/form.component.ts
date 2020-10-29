@@ -60,7 +60,7 @@ export class FormComponent implements OnInit {
     // for each row/project, pass the hours through the post.model class
 
     const project_id = id
-    console.log(project_id)
+    console.log("PROJECT ID: ", project_id)
     // const newProjectHours = this.hoursInput.nativeElement.value
     console.log(hours)
     const newTimeSheet = new TimeSheet("1", this.projectDate, project_id, hours)
