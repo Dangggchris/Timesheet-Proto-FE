@@ -31,8 +31,8 @@
                                 <option *ngFor="let project of userProjects" value="project.id">{{project.name}}
                                 </option>
                             </select> -->
-                            <select matNativeControl required [(ngModel)]="projectid">
-                                <option *ngFor="let project of userProjects" [ngvalue]="project.id">{{project.id}}
+                            <select matNativeControl required [(ngModel)]="projectname">
+                                <option *ngFor="let project of userProjects" [ngvalue]="projectname">{{project.name}}
                                     <!-- <input type="number" class="form-control" [(ngModel)]="project.project_name" #projectInput /> -->
                                 </option>
                             </select>
@@ -43,7 +43,7 @@
                     </td>
                     <td>
                         <button mat-button color="primary"
-                            (click)="saveDayHours($event, projectid, project.timesheet.hours)">
+                            (click)="saveDayHours($event, projectname, project.timesheet.hours)">
                             Save </button>
                     </td>
                     <td>
@@ -67,8 +67,8 @@
                     <tr>
                         <td>
                             <!-- <input type="text" class="form-control" placeholder="Enter Project Name" #projectInput /> -->
-                            <select matNativeControl required [(ngModel)]="projectid">
-                                <option *ngFor="let project of userProjects" [ngvalue]="project.id">{{project.id}}
+                            <select matNativeControl required [(ngModel)]="projectname">
+                                <option *ngFor="let project of userProjects" [ngvalue]="projectname">{{project.name}}
                                     <!-- <input type="number" class="form-control" [(ngModel)]="project.project_name" #projectInput /> -->
                                 </option>
 
@@ -79,7 +79,7 @@
                         </td>
                         <td>
                             <!-- the numner 5 is hard coded, this is where the number of hours selected should go -->
-                            <button mat-button color="primary" (click)="saveDayHours($event, projectid, projecthours)">
+                            <button mat-button color="primary" (click)="saveDayHours($event, projectname, projecthours)">
                                 Save </button>
                         </td>
                         <td>

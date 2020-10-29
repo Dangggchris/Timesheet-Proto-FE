@@ -41,12 +41,13 @@ export class FormComponent implements OnInit {
     for (let i = 0; i < this.projectsByDate.length; i++) {
       for (let j = 0; j < this.userProjects.length; j++) {
         if (this.projectsByDate[i].projects_id == this.userProjects[j].id) {
-          const projectName = new Projects(this.userProjects[j].name, this.projectsByDate[i])
+          const projectName = new Projects(this.userProjects[j].name, this.projectsByDate[i], this.userProjects[j].id)
           this.projects.push(projectName)
         }
       }
     }
     this.sumOfHours()
+    console.log(this.projects)
   }
 
 
@@ -56,10 +57,16 @@ export class FormComponent implements OnInit {
     // console.log(this.projects)
   }
 
-  saveDayHours(event, id, hours) {
+  saveDayHours(event, name, hours) {
     // for each row/project, pass the hours through the post.model class
-
-    const project_id = id
+    let project_id;
+    for(let i = 0; i < this.userProjects.lemgth; i++){
+      if(name == this.userProjects[i].name){
+        project_id = this.userProjects[i].id;
+        break;
+      }
+    }
+    
     console.log("PROJECT ID: ", project_id)
     // const newProjectHours = this.hoursInput.nativeElement.value
     console.log(hours)
@@ -86,7 +93,7 @@ export class FormComponent implements OnInit {
   }
 
   addRow() {
-    const blankProject = new Projects('', {})
+    const blankProject = new Projects('', {}, 0)
     this.projects.push(blankProject)
   }
 
