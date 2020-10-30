@@ -12,9 +12,3 @@ export class Projects {
     }
 }
 
-
-// export interface Projects {
-
-//     timesheet: {};
-//     project_name: string;
-// }

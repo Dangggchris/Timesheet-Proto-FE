@@ -57,20 +57,23 @@ export class FormComponent implements OnInit {
     // console.log(this.projects)
   }
 
-  saveDayHours(event, name, hours) {
+  saveDayHours(event, projectName, hours) {
     // for each row/project, pass the hours through the post.model class
+    console.log(event)
+
+    console.log(projectName)
+
     let project_id;
-    for(let i = 0; i < this.userProjects.lemgth; i++){
-      if(name == this.userProjects[i].name){
+    for (let i = 0; i < this.userProjects.length; i++) {
+      if (projectName == this.userProjects[i].name) {
         project_id = this.userProjects[i].id;
         break;
       }
     }
-    
+
     console.log("PROJECT ID: ", project_id)
     // const newProjectHours = this.hoursInput.nativeElement.value
-    console.log(hours)
-    const newTimeSheet = new TimeSheet("1", this.projectDate, project_id, hours)
+    let newTimeSheet = new TimeSheet("1", this.projectDate, project_id, hours)
     // implement the httpclient requests using api.service.ts - using a put request
     this.api.saveProjectHours(newTimeSheet)
       .subscribe(data => console.log(data))
@@ -93,7 +96,7 @@ export class FormComponent implements OnInit {
   }
 
   addRow() {
-    const blankProject = new Projects('', {}, 0)
+    let blankProject = new Projects('', {}, 0)
     this.projects.push(blankProject)
   }
 
