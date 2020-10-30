@@ -39,7 +39,7 @@ export class ApiService {
         })
       })
       .subscribe(responseData => {
-        console.log(responseData)
+
         this.user_ID = responseData
       },
         error => console.log(error));
