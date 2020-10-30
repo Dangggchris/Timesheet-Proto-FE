@@ -73,7 +73,7 @@ export class FormComponent implements OnInit {
 
     console.log("PROJECT ID: ", project_id)
     // const newProjectHours = this.hoursInput.nativeElement.value
-    let newTimeSheet = new TimeSheet("1", this.projectDate, project_id, hours)
+    let newTimeSheet = new TimeSheet(this.api.user_ID, this.projectDate, project_id, hours)
     // implement the httpclient requests using api.service.ts - using a put request
     this.api.saveProjectHours(newTimeSheet)
       .subscribe(data => console.log(data))

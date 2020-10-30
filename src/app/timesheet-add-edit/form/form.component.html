@@ -21,7 +21,7 @@
                         <div *ngIf="project.project_name;then content else other_content">here is ignored</div>
                         <ng-template #content>
 
-                            <h2 (value)="project.project_id">ID: {{project.project_id}} - {{project.project_name}}</h2>
+                            <h2 (value)="project.project_id">{{project.project_name}}</h2>
                         </ng-template>
                         <ng-template #other_content>
                             <select matNativeControl required [(ngModel)]="project.project_name">
