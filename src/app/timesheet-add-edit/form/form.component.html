@@ -18,37 +18,26 @@
             <tbody *ngIf="projectsByDate.length > 0; else elseBlock">
                 <tr *ngFor="let project of projects">
                     <td>
-                        <!-- Show Project Name -->
-                        <!-- <input type="number" class="form-control" [(ngModel)]="project.project_name" #projectInput /> -->
-                        <!-- <h2>{{project.project_name}}</h2> -->
-
                         <div *ngIf="project.project_name;then content else other_content">here is ignored</div>
                         <ng-template #content>
-                            <h2>{{project.project_name}}</h2>
+
+                            <h2 (value)="project.project_id">{{project.project_name}}</h2>
                         </ng-template>
                         <ng-template #other_content>
-                            <!-- <select matNativeControl required>
-                                <option *ngFor="let project of userProjects" value="project.id">{{project.name}}
-                                </option>
-                            </select> -->
-                            <select matNativeControl required [(ngModel)]="projectid">
-                                <option *ngFor="let project of userProjects" [ngvalue]="project.id">{{project.id}}
-                                    <!-- <input type="number" class="form-control" [(ngModel)]="project.project_name" #projectInput /> -->
+                            <select matNativeControl required [(ngModel)]="project.project_name">
+                                <option *ngFor="let project of userProjects" [ngvalue]="projectname">{{project.name}}
                                 </option>
                             </select>
                         </ng-template>
                     </td>
                     <td>
-                        <input class="form-control" type="number" placeholder="0" [(ngModel)]="project.timesheet.hours">
+                        <input name="hours " class="form-control" type="number" placeholder="0"
+                            [(ngModel)]="project.timesheet.hours">
                     </td>
                     <td>
                         <button mat-button color="primary"
-                            (click)="saveDayHours($event, projectid, project.timesheet.hours)">
+                            (click)="saveDayHours($event, project.project_name, project.timesheet.hours)">
                             Save </button>
-                    </td>
-                    <td>
-                        <button mat-button color="primary">
-                            Submit </button>
                     </td>
                 </tr>
                 <tr>
@@ -67,8 +56,8 @@
                     <tr>
                         <td>
                             <!-- <input type="text" class="form-control" placeholder="Enter Project Name" #projectInput /> -->
-                            <select matNativeControl required [(ngModel)]="projectid">
-                                <option *ngFor="let project of userProjects" [ngvalue]="project.id">{{project.id}}
+                            <select matNativeControl required [(ngModel)]="projectname">
+                                <option *ngFor="let project of userProjects" [ngvalue]="projectname">{{project.name}}
                                     <!-- <input type="number" class="form-control" [(ngModel)]="project.project_name" #projectInput /> -->
                                 </option>
 
@@ -79,12 +68,9 @@
                         </td>
                         <td>
                             <!-- the numner 5 is hard coded, this is where the number of hours selected should go -->
-                            <button mat-button color="primary" (click)="saveDayHours($event, projectid, projecthours)">
+                            <button mat-button color="primary"
+                                (click)="saveDayHours($event, projectname, projecthours)">
                                 Save </button>
-                        </td>
-                        <td>
-                            <button mat-button color="primary">
-                                Submit </button>
                         </td>
                     </tr>
                     <tr>

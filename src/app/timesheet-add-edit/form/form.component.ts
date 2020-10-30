@@ -33,20 +33,16 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // do a get request into the modal based on the uid & date
-    // need a get request for all projects tied to user, user_projects pivot table, or this will be an input from timesheet-add-edit component
-    // pull in the projects_users array
-    // Pull in the projects by date array, loop through array and compare the projects_id with the projects_user.id,
-    // if the projects_id === id, create a new joined object and push to the projects array, this array will be displayed on the FE...
     for (let i = 0; i < this.projectsByDate.length; i++) {
       for (let j = 0; j < this.userProjects.length; j++) {
         if (this.projectsByDate[i].projects_id == this.userProjects[j].id) {
-          const projectName = new Projects(this.userProjects[j].name, this.projectsByDate[i])
+          const projectName = new Projects(this.userProjects[j].name, this.projectsByDate[i], this.userProjects[j].id)
           this.projects.push(projectName)
         }
       }
     }
     this.sumOfHours()
+
   }
 
 
@@ -56,14 +52,23 @@ export class FormComponent implements OnInit {
     // console.log(this.projects)
   }
 
-  saveDayHours(event, id, hours) {
+  saveDayHours(event, projectName, hours) {
     // for each row/project, pass the hours through the post.model class
+    console.log(event)
 
-    const project_id = id
+    console.log(projectName)
+
+    let project_id;
+    for (let i = 0; i < this.userProjects.length; i++) {
+      if (projectName == this.userProjects[i].name) {
+        project_id = this.userProjects[i].id;
+        break;
+      }
+    }
+
     console.log("PROJECT ID: ", project_id)
     // const newProjectHours = this.hoursInput.nativeElement.value
-    console.log(hours)
-    const newTimeSheet = new TimeSheet("1", this.projectDate, project_id, hours)
+    let newTimeSheet = new TimeSheet(this.api.user_ID, this.projectDate, project_id, hours)
     // implement the httpclient requests using api.service.ts - using a put request
     this.api.saveProjectHours(newTimeSheet)
       .subscribe(data => console.log(data))
@@ -72,11 +77,7 @@ export class FormComponent implements OnInit {
 
 
   submitDayHours() {
-    // const newProjectName = this.projectInput.nativeElement.value
-    // const newProjectHours = this.hoursInput.nativeElement.value
-
-    // const newTimeSheet = new TimeSheet("1", this.selectedDate, newProjectName, newProjectHours)
-    // console.log(newTimeSheet)
+    // NICE TO HAVE
   }
 
   sumOfHours() {
@@ -86,7 +87,7 @@ export class FormComponent implements OnInit {
   }
 
   addRow() {
-    const blankProject = new Projects('', {})
+    let blankProject = new Projects('', {}, 0)
     this.projects.push(blankProject)
   }
 

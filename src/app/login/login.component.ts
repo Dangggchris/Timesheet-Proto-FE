@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   async laravelCredntials() {
 
     const firebasetoken = await this.auth.getToken()
-    console.log(firebasetoken)
+
     this.api.credentialsToLaravel(firebasetoken)
 
   }
