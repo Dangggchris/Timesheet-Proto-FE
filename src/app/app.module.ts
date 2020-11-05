@@ -21,7 +21,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { TimesheetMainComponent } from './timesheet-main/timesheet-main.component';
 import { TimesheetAddEditComponent } from './timesheet-add-edit/timesheet-add-edit.component';
 import { TimesheetHistoryComponent } from './timesheet-history/timesheet-history.component';
 import { TimesheetHistoryProjectComponent } from './timesheet-history/timesheet-history-project/timesheet-history-project.component';
@@ -43,7 +42,6 @@ import { ModalComponent } from './components/modal/modal.component';
     TimesheetAddEditComponent,
     TimesheetHistoryComponent,
     TimesheetHistoryProjectComponent,
-    TimesheetMainComponent,
     FormComponent,
     ModalComponent
   ],

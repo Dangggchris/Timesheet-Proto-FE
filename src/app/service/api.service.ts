@@ -41,6 +41,7 @@ export class ApiService {
       .subscribe(responseData => {
 
         this.user_ID = responseData
+        console.log(this.user_ID)
       },
         error => console.log(error));
   }
