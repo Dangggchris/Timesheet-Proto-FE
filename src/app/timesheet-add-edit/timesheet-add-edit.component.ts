@@ -88,6 +88,7 @@ export class TimesheetAddEditComponent implements OnInit {
 
   ngOnInit(): void {
     //  get user-projects table
+    console.log(this.api.user_ID)
     this.api.getUserProjects(this.api.user_ID).subscribe(response => {
       this.userProjects = response
       console.log(response)
