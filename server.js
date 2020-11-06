@@ -2,7 +2,7 @@ const express = require('express');
 
 let app = express();
 
-app.use(express.static('dist/Timesheet-Proto-FE'))
+app.use(express.static('dist/Front-End'))
 
 app.get('/', (req, res, next) => {
     res.redirect('/')
