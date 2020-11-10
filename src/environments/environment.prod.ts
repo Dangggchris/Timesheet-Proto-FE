@@ -9,5 +9,5 @@ export const environment = {
     messagingSenderId: "1852765916",
     appId: "1:1852765916:web:3749b1da913204f270e619"
   },
-  apiUR: "To Be Determined"
+  apiUR: 'https://timesheet-backend-api.herokuapp.com'
 };
