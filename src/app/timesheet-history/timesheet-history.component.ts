@@ -41,13 +41,16 @@ export class TimesheetHistoryComponent implements OnInit {
 
       for (let timesheet in this.userTimesheets["data"]) {
         let curr_project = this.userTimesheets["data"][timesheet]
-        console.log(curr_project)
+
         if (curr_project["projects_id"] != "undefined") {
           if (curr_project["projects_id"] in projectHours) {
             projectHours[curr_project["projects_id"]] = { "hours": curr_project["hours"] + projectHours[curr_project["projects_id"]]["hours"], "name": this.projectDict[curr_project["projects_id"]]["name"] };
           }
           else {
+            console.log("Project Dictionary: " + this.projectDict)
+            console.log(projectHours)
             projectHours[curr_project["projects_id"]] = { "hours": curr_project["hours"], "name": this.projectDict[curr_project["projects_id"]]["name"] }
+
           }
         }
 
