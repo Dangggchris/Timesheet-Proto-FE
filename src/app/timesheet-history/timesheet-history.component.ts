@@ -22,20 +22,25 @@ export class TimesheetHistoryComponent implements OnInit {
     private api: ApiService) { }
 
   ngOnInit(): void {
-    this.api.getUserProjects(this.api.user_ID).subscribe(response => {
-      //console.log("THIS IS THE USER ID", this.api.user_ID)
+    this.getUserProjects().then(() => {
+      this.getProjectTimesheets()
+    })
+  }
+
+  async getUserProjects() {
+    await this.api.getUserProjects(this.api.user_ID).subscribe(response => {
       this.userProjects = response;
       let myDict = {};
-      //console.log("userproject", this.userProjects)
       for (let project in this.userProjects) {
         myDict[this.userProjects[project]["id"]] = this.userProjects[project];
       }
       this.projectDict = myDict;
       console.log("DICTIONARY", this.projectDict);
-      //console.log("THIS IS THE RESPONSE: ", response)
     })
+  }
 
-    this.api.getProjectTimesheets(this.api.user_ID).subscribe(response => {
+  async getProjectTimesheets() {
+    await this.api.getProjectTimesheets(this.api.user_ID).subscribe(response => {
       this.userTimesheets = response;
       let projectHours = {};
 
@@ -47,23 +52,16 @@ export class TimesheetHistoryComponent implements OnInit {
             projectHours[curr_project["projects_id"]] = { "hours": curr_project["hours"] + projectHours[curr_project["projects_id"]]["hours"], "name": this.projectDict[curr_project["projects_id"]]["name"] };
           }
           else {
-            console.log("Project Dictionary: " + this.projectDict)
-            console.log(projectHours)
             projectHours[curr_project["projects_id"]] = { "hours": curr_project["hours"], "name": this.projectDict[curr_project["projects_id"]]["name"] }
-
           }
         }
-
       }
-
       let proj_info = []
       for (let info in projectHours) {
-        //console.log("INFO", projectHours[info])
         proj_info.push(projectHours[info])
       }
       this.projectInfo = proj_info;
       console.log("THESE ARE THE TIMESHEET HOURS: ", projectHours);
-      //console.log("User Projects: ", this.userProjects)
     })
   }
 
