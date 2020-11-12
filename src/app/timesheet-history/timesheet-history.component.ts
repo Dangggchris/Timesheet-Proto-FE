@@ -22,9 +22,7 @@ export class TimesheetHistoryComponent implements OnInit {
     private api: ApiService) { }
 
   ngOnInit(): void {
-    this.getUserProjects().then(() => {
-      this.getProjectTimesheets()
-    })
+    this.getUserProjects()
   }
 
   async getUserProjects() {
@@ -36,8 +34,10 @@ export class TimesheetHistoryComponent implements OnInit {
       }
       this.projectDict = myDict;
       console.log("DICTIONARY", this.projectDict);
+
+      this.getProjectTimesheets();
     })
-  }
+  };
 
   async getProjectTimesheets() {
     await this.api.getProjectTimesheets(this.api.user_ID).subscribe(response => {
@@ -63,6 +63,6 @@ export class TimesheetHistoryComponent implements OnInit {
       this.projectInfo = proj_info;
       console.log("THESE ARE THE TIMESHEET HOURS: ", projectHours);
     })
-  }
+  };
 
 }
