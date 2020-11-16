@@ -23,10 +23,7 @@ export class LoginComponent implements OnInit {
 
     // 1. sign in using google
     this.auth.googleSignIn()
-    // 2. set the user token
-    // const firebasetoken = this.auth.userToken
-    // 3. send user toke to laravel
-    // this.api.credentialsToLaravel(firebasetoken)
+    // send user toke to laravel
     this.laravelCredntials()
   }
 
@@ -38,8 +35,6 @@ export class LoginComponent implements OnInit {
     this.api.credentialsToLaravel(firebasetoken)
 
   }
-
-
 
 }
 

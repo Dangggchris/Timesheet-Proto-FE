@@ -49,7 +49,6 @@ export class FormComponent implements OnInit {
   ngDoCheck() {
     this.totalHours = 0
     this.sumOfHours()
-    // console.log(this.projects)
   }
 
   saveDayHours(event, projectName, hours) {
@@ -66,8 +65,6 @@ export class FormComponent implements OnInit {
       }
     }
 
-    console.log("PROJECT ID: ", project_id)
-    // const newProjectHours = this.hoursInput.nativeElement.value
     let newTimeSheet = new TimeSheet(this.api.user_ID, this.projectDate, project_id, hours)
     // implement the httpclient requests using api.service.ts - using a put request
     this.api.saveProjectHours(newTimeSheet)

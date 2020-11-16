@@ -68,10 +68,9 @@ export class TimesheetAddEditComponent implements OnInit {
 
     // Take in projects Array?
     this.api.getProjectsByDate(this.api.user_ID, this.projectDate)
-      // REPLACE WITH(this.authUser.uid, this.projectDate)
       .subscribe((response) => {
         this.projectsByDate = response.data
-        console.log(response)
+
         // OPEN MODAL
         this.modalService.open(this.modalContent)
       })
@@ -90,7 +89,6 @@ export class TimesheetAddEditComponent implements OnInit {
     //  get user-projects table
     this.api.getUserProjects(this.api.user_ID).subscribe(response => {
       this.userProjects = response
-      console.log(response)
     })
 
 

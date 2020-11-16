@@ -39,8 +39,9 @@ export class ApiService {
         })
       })
       .subscribe(responseData => {
-
         this.user_ID = responseData
+        // Identify your User Id
+        console.log('User Id: ' + this.user_ID)
       },
         error => console.log(error));
   }
@@ -62,7 +63,6 @@ export class ApiService {
 
   // PUT/UPDATE
   saveProjectHours(timeSheet: TimeSheet): Observable<void> {
-    console.log(timeSheet)
 
     return this.http.put<void>(
       environment.apiURL + `/api/dailytimesheet/userid=${timeSheet.user_id}/projectid=${timeSheet.project_id}`,
